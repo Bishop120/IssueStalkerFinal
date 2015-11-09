@@ -7,20 +7,27 @@ package com.uca.issuetracker;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import services.Service;
+//import services.*;
+import controllers.Controller;
+import views.*;
 
 /**
  *
  * @author danger
  */
+
 public class Application {    
     
     public static void main(String [] args)
     {
-        Service service = new Service();
+        Controller mainController = new Controller();
+        
+        
+        //Service service = new Service();
         try 
         {
-            System.out.println(service.get("Project", "k32]ITdg83i"));
+            //System.out.println(service.get("Project", "k32ITdg83i"));
+            System.out.println(mainController.projects.projectModel.get("Project", "k32ITdg83i"));
             
         } 
         

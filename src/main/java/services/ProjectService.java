@@ -11,4 +11,11 @@ package services;
  */
 public class ProjectService extends Service{
     
+    public Service service;
+    
+    public ProjectService()
+    {
+        service = new Service();
+    }
+    
 }

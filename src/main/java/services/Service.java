@@ -6,7 +6,6 @@
 package services;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
-import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 /**
  *
@@ -49,6 +48,7 @@ public class Service {
     /**
      * GET a given class
      * @param className
+     * @param objectId
      * @return 
      * @throws java.lang.Exception 
      */

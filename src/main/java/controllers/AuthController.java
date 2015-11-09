@@ -5,10 +5,11 @@
  */
 package controllers;
 
+import services.AuthService;
 /**
  *
  * @author danger
  */
 public class AuthController {
-    
+    public AuthService authModel;
 }

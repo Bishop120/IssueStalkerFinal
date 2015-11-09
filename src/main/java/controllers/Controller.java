@@ -4,21 +4,17 @@
  * and open the template in the editor.
  */
 package controllers;
-import services.*;
 
 /**
  *
- * @author danger
+ * @author mac
  */
-public class ProjectController {
+public class Controller {
+    public AuthController auth;
+    public ProjectController projects;
     
-    public ProjectService projectModel;
-    
-    public ProjectController()
-    {
-        projectModel = new ProjectService();
+    public Controller(){
+        auth = new AuthController();
+        projects = new ProjectController();
     }
-    
-    
-    
 }

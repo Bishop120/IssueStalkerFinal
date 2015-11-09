@@ -5,6 +5,8 @@
  */
 package views;
 
+import controllers.*;
+
 /**
  *
  * @author mac
@@ -14,7 +16,10 @@ public class AuthView extends javax.swing.JFrame {
     /**
      * Creates new form AuthView
      */
-    public AuthView() {
+    private final Controller controller;
+    
+    public AuthView(Controller main) {
+        controller = main;
         initComponents();
     }
 
