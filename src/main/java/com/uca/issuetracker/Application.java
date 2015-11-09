@@ -18,9 +18,14 @@ public class Application {
     public static void main(String [] args)
     {
         Service service = new Service();
-        try {
+        try 
+        {
             System.out.println(service.get("Project", "k32]ITdg83i"));
-        } catch (Exception ex) {
+            
+        } 
+        
+        catch (Exception ex) 
+        {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
