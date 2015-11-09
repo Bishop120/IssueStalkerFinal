@@ -27,7 +27,7 @@ public class Application {
         try 
         {
             //System.out.println(service.get("Project", "k32ITdg83i"));
-            //System.out.println(mainController.projects.projectModel.get("Project", "k32ITdg83i"));
+            //System.out.println(mainController.projects.get("Project", "k32ITdg83i"));
             
         } 
         

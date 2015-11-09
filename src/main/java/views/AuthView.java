@@ -130,9 +130,10 @@ public class AuthView extends javax.swing.JFrame {
         // TODO add your handling code here:
         try 
                 {
-                    jTextArea1.append(usernamejTextField.getText());
+                    String username = usernamejTextField.getText();
                     String password = new String(jPasswordField.getPassword());
-                    jTextArea1.append(password);
+                    
+                    jTextArea1.append(controller.auth.authModel.get(username, password));
                 } 
                 catch (Exception ex) 
                 {
