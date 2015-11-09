@@ -45,8 +45,8 @@ public class AuthView extends javax.swing.JFrame {
         usernamejTextField = new javax.swing.JTextField();
         passwordjLabel = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
@@ -64,9 +64,19 @@ public class AuthView extends javax.swing.JFrame {
 
         jPasswordField.setPreferredSize(new java.awt.Dimension(130, 26));
 
-        jButton1.setText("Submit");
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancel");
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -85,9 +95,9 @@ public class AuthView extends javax.swing.JFrame {
                     .addComponent(passwordjLabel)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(submitButton)
                         .addGap(66, 66, 66)
-                        .addComponent(jButton2))
+                        .addComponent(cancelButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
@@ -106,8 +116,8 @@ public class AuthView extends javax.swing.JFrame {
                 .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(submitButton)
+                    .addComponent(cancelButton))
                 .addGap(79, 79, 79)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(82, Short.MAX_VALUE))
@@ -115,6 +125,25 @@ public class AuthView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+        try 
+                {
+                    jTextArea1.append(usernamejTextField.getText());
+                    String password = new String(jPasswordField.getPassword());
+                    jTextArea1.append(password);
+                } 
+                catch (Exception ex) 
+                {
+                    Logger.getLogger(AuthView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,26 +177,18 @@ public class AuthView extends javax.swing.JFrame {
             @Override
             public void run() {
                 
-                try 
-                {
-                    jTextArea1.append(AuthView.controller.projects.projectModel.get("Project", "k32ITdg83i"));
-                } 
-                catch (Exception ex) 
-                {
-                    Logger.getLogger(AuthView.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JPasswordField jPasswordField;
     private static javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel loginjLabel;
     private javax.swing.JLabel passwordjLabel;
+    private javax.swing.JButton submitButton;
     private javax.swing.JLabel usernamejLabel;
     private javax.swing.JTextField usernamejTextField;
     // End of variables declaration//GEN-END:variables

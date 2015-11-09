@@ -12,4 +12,8 @@ import services.AuthService;
  */
 public class AuthController {
     public AuthService authModel;
+    
+    public AuthController(){
+        authModel = new AuthService();
+    }
 }
