@@ -16,7 +16,7 @@ public class AuthService extends Service
     @Override
     public String get(String username, String password) throws Exception
     {
-        String url = this.baseURl + "/login/username=" + username + "password=" + password;
+        String url = this.baseURl + "/login/?username=" + username + "&password=" + password;
         System.out.println("get: " + url);
         super.request = new ClientRequest(url);
         super.prepareRequest();
