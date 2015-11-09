@@ -19,7 +19,7 @@ public class Application {
     {
         Service service = new Service();
         try {
-            System.out.println(service.list("Project"));
+            System.out.println(service.get("Project", "k32]ITdg83i"));
         } catch (Exception ex) {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }
