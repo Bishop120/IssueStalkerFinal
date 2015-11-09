@@ -21,13 +21,13 @@ public class Application {
     public static void main(String [] args)
     {
         Controller mainController = new Controller();
-        
+        AuthView login = new AuthView(mainController);
         
         //Service service = new Service();
         try 
         {
             //System.out.println(service.get("Project", "k32ITdg83i"));
-            System.out.println(mainController.projects.projectModel.get("Project", "k32ITdg83i"));
+            //System.out.println(mainController.projects.projectModel.get("Project", "k32ITdg83i"));
             
         } 
         

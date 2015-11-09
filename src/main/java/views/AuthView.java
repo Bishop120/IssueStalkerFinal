@@ -6,6 +6,8 @@
 package views;
 
 import controllers.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,11 +18,17 @@ public class AuthView extends javax.swing.JFrame {
     /**
      * Creates new form AuthView
      */
-    private final Controller controller;
+    private static Controller controller;
+    
+    public AuthView() {
+        initComponents();
+        this.setVisible(true);
+    }
     
     public AuthView(Controller main) {
         controller = main;
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -39,6 +47,8 @@ public class AuthView extends javax.swing.JFrame {
         jPasswordField = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("IssueTracker Login");
@@ -58,12 +68,16 @@ public class AuthView extends javax.swing.JFrame {
 
         jButton2.setText("Cancel");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
+                .addContainerGap(198, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(loginjLabel)
                     .addComponent(usernamejLabel)
@@ -73,8 +87,9 @@ public class AuthView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(66, 66, 66)
-                        .addComponent(jButton2)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +108,9 @@ public class AuthView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,8 +145,17 @@ public class AuthView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new AuthView().setVisible(true);
+                
+                try 
+                {
+                    jTextArea1.append(AuthView.controller.projects.projectModel.get("Project", "k32ITdg83i"));
+                } 
+                catch (Exception ex) 
+                {
+                    Logger.getLogger(AuthView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -138,6 +164,8 @@ public class AuthView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPasswordField jPasswordField;
+    private static javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel loginjLabel;
     private javax.swing.JLabel passwordjLabel;
     private javax.swing.JLabel usernamejLabel;
