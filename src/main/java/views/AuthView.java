@@ -27,10 +27,10 @@ public class AuthView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginJLabel = new javax.swing.JLabel();
+        loginjLabel = new javax.swing.JLabel();
         usernamejLabel = new javax.swing.JLabel();
-        usernameJTextField = new javax.swing.JTextField();
-        passwordJLabel = new javax.swing.JLabel();
+        usernamejTextField = new javax.swing.JTextField();
+        passwordjLabel = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -38,14 +38,14 @@ public class AuthView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("IssueTracker Login");
 
-        loginJLabel.setText("Login");
+        loginjLabel.setText("Login");
 
         usernamejLabel.setText("Username");
 
-        usernameJTextField.setText("Username");
-        usernameJTextField.setPreferredSize(new java.awt.Dimension(130, 26));
+        usernamejTextField.setText("Username");
+        usernamejTextField.setPreferredSize(new java.awt.Dimension(130, 26));
 
-        passwordJLabel.setText("Password");
+        passwordjLabel.setText("Password");
 
         jPasswordField.setPreferredSize(new java.awt.Dimension(130, 26));
 
@@ -60,10 +60,10 @@ public class AuthView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(200, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(loginJLabel)
+                    .addComponent(loginjLabel)
                     .addComponent(usernamejLabel)
-                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordJLabel)
+                    .addComponent(usernamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordjLabel)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -74,21 +74,21 @@ public class AuthView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(loginJLabel)
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(loginjLabel)
                 .addGap(18, 18, 18)
                 .addComponent(usernamejLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passwordJLabel)
+                .addComponent(passwordjLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,9 +133,9 @@ public class AuthView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPasswordField jPasswordField;
-    private javax.swing.JLabel loginJLabel;
-    private javax.swing.JLabel passwordJLabel;
-    private javax.swing.JTextField usernameJTextField;
+    private javax.swing.JLabel loginjLabel;
+    private javax.swing.JLabel passwordjLabel;
     private javax.swing.JLabel usernamejLabel;
+    private javax.swing.JTextField usernamejTextField;
     // End of variables declaration//GEN-END:variables
 }
