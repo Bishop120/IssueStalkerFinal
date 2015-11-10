@@ -5,6 +5,8 @@
  */
 package views;
 import controllers.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,6 +22,7 @@ public class AuthPanel extends javax.swing.JPanel {
     public AuthPanel(Controller main) {
         controller = main;
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -75,7 +78,7 @@ public class AuthPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
+                .addContainerGap(110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(loginjLabel)
                     .addComponent(usernamejLabel)
@@ -87,12 +90,12 @@ public class AuthPanel extends javax.swing.JPanel {
                         .addGap(66, 66, 66)
                         .addComponent(cancelButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(loginjLabel)
                 .addGap(18, 18, 18)
                 .addComponent(usernamejLabel)
@@ -108,7 +111,7 @@ public class AuthPanel extends javax.swing.JPanel {
                     .addComponent(cancelButton))
                 .addGap(79, 79, 79)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,7 +126,7 @@ public class AuthPanel extends javax.swing.JPanel {
         }
         catch (Exception ex)
         {
-            
+            Logger.getLogger(AuthPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 

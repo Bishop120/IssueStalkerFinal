@@ -14,24 +14,34 @@ import services.AuthService;
  */
 public class AuthController {
     public AuthService authModel;
+    public String sessionID;
     
     public AuthController(){
         authModel = new AuthService();
     }
     
-    public String get(String username, String password)
+    public Boolean login(String username, String password)
     {
+        Boolean valid = false;
         String str;
+        String[] temp;
         
         try 
         {
             str = authModel.get(username, password);
+            if(str.contains("sessionToken"))
+            {
+                temp=str.split("\":\"");
+                sessionID=temp[6];
+               valid = true; 
+            }
         } 
         catch (Exception ex) 
-        {   str = "Invalid Login Attempt"; 
+        {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            valid = false;
         }
         
-        return str;
+        return valid;
     }
 }
