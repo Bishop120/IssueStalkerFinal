@@ -23,15 +23,15 @@ public class AuthController {
     public Boolean login(String username, String password)
     {
         Boolean valid = false;
-        String str;
+        String response;
         String[] temp;
         
         try 
         {
-            str = authModel.get(username, password);
-            if(str.contains("sessionToken"))
+            response = authModel.get(username, password);
+            if(response.contains("sessionToken"))
             {
-                temp=str.split("\"");
+                temp=response.split("\"");
                 sessionID=temp[11];
                 sessionID.replaceAll("\"","");
                valid = true; 

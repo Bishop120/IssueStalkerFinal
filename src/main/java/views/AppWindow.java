@@ -24,6 +24,12 @@ public class AppWindow extends javax.swing.JFrame {
         Controller = new Controller();
         initComponents();
         this.setVisible(true);
+        AuthPanel.setVisible(true);
+        AdminPanel.setVisible(false);
+        ProjectPanel.setVisible(false);
+        FeaturesPanel.setVisible(false);
+        IssuesPanel.setVisible(false);
+        ReportsPanel.setVisible(false);
     }
 
     /**
@@ -258,6 +264,7 @@ public class AppWindow extends javax.swing.JFrame {
         String username = authUsernameField.getText();
         String password = new String(authPasswordField.getPassword());
         boolean valid=false;
+        
         try
         {
             valid=Controller.auth.login(username, password);
@@ -293,6 +300,8 @@ public class AppWindow extends javax.swing.JFrame {
 
     private void projectReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectReportButtonActionPerformed
         // TODO add your handling code here:
+        ProjectPanel.setVisible(false);
+        ReportsPanel.setVisible(true);
     }//GEN-LAST:event_projectReportButtonActionPerformed
 
     /**
@@ -326,7 +335,7 @@ public class AppWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new AppWindow().setVisible(true);
+                //new AppWindow().setVisible(true);
             }
         });
     }
