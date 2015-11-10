@@ -31,14 +31,20 @@ public class AuthController {
             str = authModel.get(username, password);
             if(str.contains("sessionToken"))
             {
-                temp=str.split("\":\"");
-                sessionID=temp[6];
+                temp=str.split("\"");
+                sessionID=temp[11];
+                sessionID.replaceAll("\"","");
                valid = true; 
+            }
+            else
+            {
+                sessionID="";
             }
         } 
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            sessionID="";
             valid = false;
         }
         

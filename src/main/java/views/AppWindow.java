@@ -19,9 +19,9 @@ public class AppWindow extends javax.swing.JFrame {
     /**
      * Creates new form AppWindow
      */
-    private Controller controller;
+    private Controller Controller;
     public AppWindow() {
-        controller = new Controller();
+        Controller = new Controller();
         initComponents();
         this.setVisible(true);
     }
@@ -36,16 +36,20 @@ public class AppWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         AuthPanel = new javax.swing.JPanel();
-        passwordjLabel = new javax.swing.JLabel();
-        jPasswordField = new javax.swing.JPasswordField();
-        submitButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        loginjLabel = new javax.swing.JLabel();
-        usernamejLabel = new javax.swing.JLabel();
-        usernamejTextField = new javax.swing.JTextField();
+        authPasswordLabell = new javax.swing.JLabel();
+        authPasswordField = new javax.swing.JPasswordField();
+        authSubmitButton = new javax.swing.JButton();
+        authCancelButton = new javax.swing.JButton();
+        authLoginLabel = new javax.swing.JLabel();
+        authUsernameLabel = new javax.swing.JLabel();
+        authUsernameField = new javax.swing.JTextField();
+        authLoginStatusLabel = new javax.swing.JLabel();
         ProjectPanel = new javax.swing.JPanel();
+        projectAdminButton = new javax.swing.JButton();
+        projectLogoutButton = new javax.swing.JButton();
+        projectRefreshButton = new javax.swing.JButton();
+        projectsScrollpane = new javax.swing.JScrollPane();
+        projectReportButton = new javax.swing.JButton();
         AdminPanel = new javax.swing.JPanel();
         FeaturesPanel = new javax.swing.JPanel();
         IssuesPanel = new javax.swing.JPanel();
@@ -53,92 +57,137 @@ public class AppWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Issue Tracker");
-        setPreferredSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         AuthPanel.setPreferredSize(new java.awt.Dimension(500, 400));
 
-        passwordjLabel.setText("Password");
+        authPasswordLabell.setText("Password");
 
-        jPasswordField.setPreferredSize(new java.awt.Dimension(130, 26));
+        authPasswordField.setPreferredSize(new java.awt.Dimension(130, 26));
 
-        submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
+        authSubmitButton.setText("Submit");
+        authSubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
+                authSubmitButtonActionPerformed(evt);
             }
         });
 
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+        authCancelButton.setText("Cancel");
+        authCancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                authCancelButtonActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        authLoginLabel.setText("Login");
 
-        loginjLabel.setText("Login");
+        authUsernameLabel.setText("Username");
 
-        usernamejLabel.setText("Username");
-
-        usernamejTextField.setText("Username");
-        usernamejTextField.setPreferredSize(new java.awt.Dimension(130, 26));
+        authUsernameField.setText("Username");
+        authUsernameField.setPreferredSize(new java.awt.Dimension(130, 26));
 
         javax.swing.GroupLayout AuthPanelLayout = new javax.swing.GroupLayout(AuthPanel);
         AuthPanel.setLayout(AuthPanelLayout);
         AuthPanelLayout.setHorizontalGroup(
             AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AuthPanelLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(130, Short.MAX_VALUE)
                 .addGroup(AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(loginjLabel)
-                    .addComponent(usernamejLabel)
-                    .addComponent(usernamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordjLabel)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(authLoginLabel)
+                    .addComponent(authUsernameLabel)
+                    .addComponent(authUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(authPasswordLabell)
+                    .addComponent(authPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AuthPanelLayout.createSequentialGroup()
-                        .addComponent(submitButton)
+                        .addComponent(authSubmitButton)
                         .addGap(66, 66, 66)
-                        .addComponent(cancelButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addComponent(authCancelButton))
+                    .addComponent(authLoginStatusLabel))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         AuthPanelLayout.setVerticalGroup(
             AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AuthPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginjLabel)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(authLoginLabel)
                 .addGap(18, 18, 18)
-                .addComponent(usernamejLabel)
+                .addComponent(authUsernameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(authUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passwordjLabel)
+                .addComponent(authPasswordLabell)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(authPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitButton)
-                    .addComponent(cancelButton))
-                .addGap(79, 79, 79)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(authSubmitButton)
+                    .addComponent(authCancelButton))
+                .addGap(18, 18, 18)
+                .addComponent(authLoginStatusLabel)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         getContentPane().add(AuthPanel, "card0");
+
+        ProjectPanel.setMinimumSize(new java.awt.Dimension(500, 400));
+        ProjectPanel.setPreferredSize(new java.awt.Dimension(500, 400));
+
+        projectAdminButton.setText("Admininstration");
+
+        projectLogoutButton.setText("Logout");
+        projectLogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectLogoutButtonActionPerformed(evt);
+            }
+        });
+
+        projectRefreshButton.setText("Refresh");
+
+        projectReportButton.setText("Report Generator");
+        projectReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectReportButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ProjectPanelLayout = new javax.swing.GroupLayout(ProjectPanel);
         ProjectPanel.setLayout(ProjectPanelLayout);
         ProjectPanelLayout.setHorizontalGroup(
             ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(projectLogoutButton))
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(projectsScrollpane)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projectRefreshButton)
+                        .addGap(115, 115, 115))))
         );
         ProjectPanelLayout.setVerticalGroup(
             ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGroup(ProjectPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addComponent(projectReportButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(projectAdminButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(projectLogoutButton)
+                            .addComponent(projectRefreshButton))))
+                .addContainerGap())
         );
 
         getContentPane().add(ProjectPanel, "card3");
@@ -199,25 +248,52 @@ public class AppWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void authCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authCancelButtonActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_authCancelButtonActionPerformed
 
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+    private void authSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authSubmitButtonActionPerformed
         // TODO add your handling code here:
-        String username = usernamejTextField.getText();
-        String password = new String(jPasswordField.getPassword());
-        
+        String username = authUsernameField.getText();
+        String password = new String(authPasswordField.getPassword());
+        boolean valid=false;
         try
         {
-            controller.auth.login(username, password);
+            valid=Controller.auth.login(username, password);
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AuthPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppWindow.class.getName()).log(Level.SEVERE, null, ex);
+            valid = false;
         }
-    }//GEN-LAST:event_submitButtonActionPerformed
+        
+        if(valid)
+        {
+            authLoginStatusLabel.setText("Login Successful!");
+            
+            ProjectPanel.setVisible(true);
+            AuthPanel.setVisible(false);
+            
+            authLoginStatusLabel.setText("");
+         
+        }
+        else
+        {
+            authLoginStatusLabel.setText("Invalid Username/Password!");
+        }
+    }//GEN-LAST:event_authSubmitButtonActionPerformed
+
+    private void projectLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectLogoutButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectPanel.setVisible(false);
+        AuthPanel.setVisible(true);
+        Controller.auth.sessionID="";
+    }//GEN-LAST:event_projectLogoutButtonActionPerformed
+
+    private void projectReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectReportButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectReportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,14 +340,18 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JPanel IssuesPanel;
     private javax.swing.JPanel ProjectPanel;
     private javax.swing.JPanel ReportsPanel;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JPasswordField jPasswordField;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel loginjLabel;
-    private javax.swing.JLabel passwordjLabel;
-    private javax.swing.JButton submitButton;
-    private javax.swing.JLabel usernamejLabel;
-    private javax.swing.JTextField usernamejTextField;
+    private javax.swing.JButton authCancelButton;
+    private javax.swing.JLabel authLoginLabel;
+    private javax.swing.JLabel authLoginStatusLabel;
+    private javax.swing.JPasswordField authPasswordField;
+    private javax.swing.JLabel authPasswordLabell;
+    private javax.swing.JButton authSubmitButton;
+    private javax.swing.JTextField authUsernameField;
+    private javax.swing.JLabel authUsernameLabel;
+    private javax.swing.JButton projectAdminButton;
+    private javax.swing.JButton projectLogoutButton;
+    private javax.swing.JButton projectRefreshButton;
+    private javax.swing.JButton projectReportButton;
+    private javax.swing.JScrollPane projectsScrollpane;
     // End of variables declaration//GEN-END:variables
 }
