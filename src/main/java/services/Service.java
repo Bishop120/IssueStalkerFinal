@@ -11,20 +11,18 @@ import org.json.simple.parser.JSONParser;
  *
  * @author danger
  */
-public class Service {
-    private final String baseURl = "https://api.parse.com/1";
+class Service {
+    final String baseURl = "https://api.parse.com/1";
     private final String parseAppId = "ejdm9iw3ff8CG2JVWX33CiLkpzwngMYTMyQ4CNE0";
     private final String restApiKey = "ZokE5oRI2ibLXmaPcsxLoXx4eCvnYHHZcc4cAnuu";
-    private ClientRequest request;
-    private ClientResponse response;
+    ClientRequest request;
+    ClientResponse response;
     private JSONParser parser;
-    
-
     
     /**
      * Attach Given Headers
      */
-    private void prepareRequest() {
+    void prepareRequest() {
         this.request.header("X-Parse-Application-Id", this.parseAppId);
         this.request.header("X-Parse-REST-API-Key", this.restApiKey);
     }
@@ -43,7 +41,6 @@ public class Service {
         this.response = request.get(String.class);
         return (String) this.response.getEntity();
     }
-    
     
     /**
      * GET a given class

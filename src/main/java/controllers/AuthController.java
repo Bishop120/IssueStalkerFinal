@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import services.AuthService;
 /**
  *
@@ -15,5 +17,21 @@ public class AuthController {
     
     public AuthController(){
         authModel = new AuthService();
+    }
+    
+    public String get(String username, String password)
+    {
+        String str;
+        
+        try 
+        {
+            str = authModel.get(username, password);
+        } 
+        catch (Exception ex) 
+        {   str = "Invalid Login Attempt"; 
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return str;
     }
 }

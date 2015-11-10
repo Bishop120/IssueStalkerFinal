@@ -20,14 +20,14 @@ public class Application {
     
     public static void main(String [] args)
     {
-        Controller mainController = new Controller();
-        AuthView login = new AuthView(mainController);
+        Controller controller = new Controller();
+        AuthView window = new AuthView(controller);
         
         //Service service = new Service();
         try 
         {
             //System.out.println(service.get("Project", "k32ITdg83i"));
-            //System.out.println(mainController.projects.projectModel.get("Project", "k32ITdg83i"));
+            //System.out.println(mainController.projects.get("Project", "k32ITdg83i"));
             
         } 
         
