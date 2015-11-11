@@ -57,4 +57,21 @@ class Service {
         this.response = request.get(String.class);
         return (String) this.response.getEntity();
     }
+    
+    
+        /**
+     * GET a given class
+     * @param className
+     * @param objectId
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public String update(String className, String objectId) throws Exception{
+        String url = this.baseURl + "/classes/" + className + "/" + objectId;
+        System.out.println("get: " + url);
+        this.request = new ClientRequest(url);
+        this.prepareRequest();
+        this.response = request.get(String.class);
+        return (String) this.response.getEntity();
+    }
 }
