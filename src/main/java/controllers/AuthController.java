@@ -14,7 +14,6 @@ import services.AuthService;
  */
 public class AuthController {
     public AuthService authModel;
-<<<<<<< HEAD
     public String sessionID;
     
     public AuthController(){
@@ -44,33 +43,11 @@ public class AuthController {
         } 
         catch (Exception ex) 
         {   
-=======
-
-    public AuthController(){
-        authModel = new AuthService();
-    }
-
-    public String get(String username, String password)
-    {
-        String str;
-
-        try
-        {
-            str = authModel.get(username, password);
-        }
-        catch (Exception ex)
-        {   str = "Invalid Login Attempt";
->>>>>>> master
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
             sessionID="";
             valid = false;
         }
-<<<<<<< HEAD
         
         return valid;
-=======
-
-        return str;
->>>>>>> master
     }
 }

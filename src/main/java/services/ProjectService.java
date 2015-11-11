@@ -10,9 +10,6 @@ package services;
  * @author danger
  */
 public class ProjectService extends Service{
-
-
-  public String list() throws Exception{
-    return this.list("Project");
-  }
+    
+    
 }
