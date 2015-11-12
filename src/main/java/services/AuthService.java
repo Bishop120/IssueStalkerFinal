@@ -9,14 +9,23 @@ import org.jboss.resteasy.client.*;
 
 /**
  *
- * @author danger
+ * @author Thomas Coolidge
  */
 public class AuthService extends Service
 {
-    @Override
-    public String get(String username, String password) throws Exception
+    public String login(String username, String password) throws Exception
     {
         String url = this.baseURl + "/login/?username=" + username + "&password=" + password;
+        System.out.println("get: " + url);
+        super.request = new ClientRequest(url);
+        super.prepareRequest();
+        this.response = request.get(String.class);
+        return (String) this.response.getEntity();
+    }
+    
+    public String logout(String username, String password) throws Exception
+    {
+        String url = this.baseURl + "/logout/?username=" + username + "&password=" + password;
         System.out.println("get: " + url);
         super.request = new ClientRequest(url);
         super.prepareRequest();

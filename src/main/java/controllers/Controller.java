@@ -7,7 +7,7 @@ package controllers;
 
 /**
  *
- * @author mac
+ * @author Thomas Coolidge
  */
 public class Controller {
     public AuthController auth;
