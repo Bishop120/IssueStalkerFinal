@@ -6,44 +6,34 @@
 package services;
 
 import org.jboss.resteasy.client.*;
+
 /**
  *
- * @author danger
+ * @author Thomas Coolidge
  */
 public class AuthService extends Service
 {
-    /**
-     * Username
-     * Password
-     */
-    public String login(String body) throws Exception
+    public String login(String username, String password) throws Exception
     {
-        String url = this.baseURl;
+        String url = this.baseURl + "/login/?username=" + username + "&password=" + password;
         System.out.println("get: " + url);
         super.request = new ClientRequest(url);
         super.prepareRequest();
-        super.request.body(body);
+        this.response = request.get(String.class);
+        return (String) this.response.getEntity();
+    }
+    
+    public String logout(String username, String password) throws Exception
+    {
+        String url = this.baseURl + "/logout/?username=" + username + "&password=" + password;
+        System.out.println("get: " + url);
+        super.request = new ClientRequest(url);
+        super.prepareRequest();
         this.response = request.get(String.class);
         return (String) this.response.getEntity();
     }
 
-    /**
-     * Username
-     * Password
-     */
-    public String logout() throws Exception
-    {
-        String url = this.baseURl;
-        System.out.println("get: " + url);
-        super.request = new ClientRequest(url);
-        super.prepareRequest();
-        // super.request.body(body);
-        this.response = request.post(String.class);
-        return (String) this.response.getEntity();
-    }
-
-
-
-
 
 }
+    
+

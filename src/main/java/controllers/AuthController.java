@@ -10,28 +10,75 @@ import java.util.logging.Logger;
 import services.AuthService;
 /**
  *
- * @author danger
+ * @author Thomas Coolidge
  */
 public class AuthController {
     public AuthService authModel;
-
+    public String sessionID;
+    
     public AuthController(){
         authModel = new AuthService();
     }
-
-    public String get(String username, String password)
+    
+    public Boolean login(String username, String password)
     {
-        String str;
-
-        try
+        Boolean valid = false;
+        String response;
+        String[] temp;
+        
+        try 
         {
-            str = authModel.get(username, password);
-        }
-        catch (Exception ex)
-        {   str = "Invalid Login Attempt";
+            response = authModel.login(username, password);
+            if(response.contains("sessionToken"))
+            {
+                temp=response.split("\"");
+                sessionID=temp[11];
+                sessionID.replaceAll("\"","");
+               valid = true; 
+            }
+            else
+            {
+                sessionID="";
+            }
+        } 
+        catch (Exception ex) 
+        {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            sessionID="";
+            valid = false;
         }
-
-        return str;
+        
+        return valid;
+    }
+    
+        public Boolean logout(String username, String password)
+    {
+        Boolean valid = false;
+        String response;
+        String[] temp;
+        
+        try 
+        {
+            response = authModel.logout(username, password);
+            if(response.contains("sessionToken"))
+            {
+                temp=response.split("\"");
+                sessionID=temp[11];
+                sessionID.replaceAll("\"","");
+               valid = true; 
+            }
+            else
+            {
+                sessionID="";
+            }
+        } 
+        catch (Exception ex) 
+        {   
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            sessionID="";
+            valid = false;
+        }
+        
+        return valid;
     }
 }

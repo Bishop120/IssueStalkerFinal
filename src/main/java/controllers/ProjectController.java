@@ -8,7 +8,7 @@ import services.*;
 
 /**
  *
- * @author danger
+ * @author Thomas Coolidge
  */
 public class ProjectController {
     
