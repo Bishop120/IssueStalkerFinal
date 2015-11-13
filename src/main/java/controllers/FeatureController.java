@@ -10,13 +10,13 @@ import services.*;
  *
  * @author Thomas Coolidge
  */
-public class ProjectController 
+public class FeatureController 
 {
-    public ProjectService projectModel;
+    public FeatureService featureModel;
     
-    public ProjectController()
+    public FeatureController()
     {
-        projectModel = new ProjectService();
+        featureModel = new FeatureService();
     }
     
     

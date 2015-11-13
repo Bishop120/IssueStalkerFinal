@@ -10,13 +10,13 @@ import services.*;
  *
  * @author Thomas Coolidge
  */
-public class ProjectController 
+public class ReportController 
 {
-    public ProjectService projectModel;
+    public ReportService reportModel;
     
-    public ProjectController()
+    public ReportController()
     {
-        projectModel = new ProjectService();
+        reportModel = new ReportService();
     }
     
     

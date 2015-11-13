@@ -12,11 +12,13 @@ import services.AuthService;
  *
  * @author Thomas Coolidge
  */
-public class AuthController {
+public class AuthController 
+{
     public AuthService authModel;
-    public String sessionID;
+    public String sessionToken;
     
-    public AuthController(){
+    public AuthController()
+    {
         authModel = new AuthService();
     }
     
@@ -32,50 +34,49 @@ public class AuthController {
             if(response.contains("sessionToken"))
             {
                 temp=response.split("\"");
-                sessionID=temp[11];
-                sessionID.replaceAll("\"","");
+                sessionToken=temp[11];
+                sessionToken.replaceAll("\"","");
                valid = true; 
             }
             else
             {
-                sessionID="";
+                sessionToken="";
             }
         } 
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
-            sessionID="";
+            sessionToken="";
             valid = false;
         }
         
         return valid;
     }
     
-        public Boolean logout(String username, String password)
+    public Boolean logout()
     {
         Boolean valid = false;
         String response;
-        String[] temp;
         
         try 
         {
-            response = authModel.logout(username, password);
-            if(response.contains("sessionToken"))
+            response = authModel.logout();
+            if(response.contains("{}"))
             {
-                temp=response.split("\"");
-                sessionID=temp[11];
-                sessionID.replaceAll("\"","");
-               valid = true; 
+                
+                sessionToken="";
+                valid = true; 
             }
             else
             {
-                sessionID="";
+                sessionToken="";
+                valid=false;
             }
         } 
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
-            sessionID="";
+            sessionToken="";
             valid = false;
         }
         
