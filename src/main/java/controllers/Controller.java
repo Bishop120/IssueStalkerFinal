@@ -22,24 +22,14 @@ public class Controller
     {
         String token = auth.sessionToken;
         
-        admin.adminModel.setToken(token);
         auth.authModel.setToken(token);
-        projects.projectModel.setToken(token);
-        features.featureModel.setToken(token);
-        issues.issueModel.setToken(token);
-        reports.reportModel.setToken(token);
     }
     
     public void clearToken()
     {
         String token = "";
         
-        admin.adminModel.setToken(token);
         auth.authModel.setToken(token);
-        projects.projectModel.setToken(token);
-        features.featureModel.setToken(token);
-        issues.issueModel.setToken(token);
-        reports.reportModel.setToken(token);
     }
     
     public String getToken()

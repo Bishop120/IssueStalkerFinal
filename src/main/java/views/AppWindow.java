@@ -149,6 +149,11 @@ public class AppWindow extends javax.swing.JFrame {
         });
 
         projectRefreshButton.setText("Refresh");
+        projectRefreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectRefreshButtonActionPerformed(evt);
+            }
+        });
 
         JButton button;
 
@@ -303,6 +308,10 @@ public class AppWindow extends javax.swing.JFrame {
         String password = new String(authPasswordField.getPassword());
         boolean valid=false;
         
+        
+        //Clear Password
+        authPasswordField.setText("");
+        
         try
         {
             valid=Controller.auth.login(username, password);
@@ -321,6 +330,8 @@ public class AppWindow extends javax.swing.JFrame {
             AuthPanel.setVisible(false);
             
             authLoginStatusLabel.setText("");
+            
+            ProjectRefresh();
         }
         else
         {
@@ -339,6 +350,11 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectPanel.setVisible(false);
         ReportsPanel.setVisible(true);
     }//GEN-LAST:event_projectReportButtonActionPerformed
+
+    private void projectRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectRefreshButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectRefresh();
+    }//GEN-LAST:event_projectRefreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,9 +403,14 @@ public class AppWindow extends javax.swing.JFrame {
             authLoginStatusLabel.setText("Invalid Session Token");
         }
         
-        Controller.clearToken();
+        //Controller.clearToken();
         
         AuthPanel.setVisible(true);
+    }
+    
+    private void ProjectRefresh()
+    {
+        System.out.println(Controller.projects.getAllProject());
     }
     
     

@@ -18,7 +18,7 @@ class Service
     private final String restApiKey = "ZokE5oRI2ibLXmaPcsxLoXx4eCvnYHHZcc4cAnuu";
     ClientRequest request;
     ClientResponse response;
-    private String sessionToken;
+    private static String sessionToken;
     private JSONParser parser;
     
     /**

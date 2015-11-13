@@ -19,6 +19,14 @@ public class ProjectController
         projectModel = new ProjectService();
     }
     
+    public String getAllProject()
+    {
+        String response;
+        
+        response = projectModel.getAll();
+        
+        return response;
+    }
     
     
 }

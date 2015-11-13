@@ -64,12 +64,12 @@ public class AuthController
             if(response.contains("{}"))
             {
                 
-                sessionToken="";
+                //sessionToken="";
                 valid = true; 
             }
             else
             {
-                sessionToken="";
+                //sessionToken="";
                 valid=false;
             }
         } 
