@@ -7,7 +7,8 @@ package views;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 import controllers.Controller;
 
 /**
@@ -148,6 +149,48 @@ public class AppWindow extends javax.swing.JFrame {
         });
 
         projectRefreshButton.setText("Refresh");
+        projectRefreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectRefreshButtonActionPerformed(evt);
+            }
+        });
+
+        JButton button;
+
+        JTextField text0;
+
+        JTextField text1;
+
+        JPanel buffer; //only 1, please
+
+        JPanel subbuffer; //lots of these
+
+        //create stuff to put in the scroll pane
+
+        buffer = new JPanel(new GridLayout(0, 1, 0, 4));
+
+        for(int i = 0; i < 20; i++)
+        {
+
+            subbuffer = new JPanel(new GridLayout(3, 1));
+
+            button = new JButton("Project" + i);
+
+            text0 = new JTextField("Project" + i + " description");
+
+            text1 = new JTextField("Project" + i + " details");
+
+            subbuffer.add(button);
+
+            subbuffer.add(text0);
+
+            subbuffer.add(text1);
+
+            buffer.add(subbuffer);
+
+        }
+
+        projectsScrollpane = new JScrollPane(buffer);
 
         projectReportButton.setText("Report Generator");
         projectReportButton.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +308,10 @@ public class AppWindow extends javax.swing.JFrame {
         String password = new String(authPasswordField.getPassword());
         boolean valid=false;
         
+        
+        //Clear Password
+        authPasswordField.setText("");
+        
         try
         {
             valid=Controller.auth.login(username, password);
@@ -276,14 +323,15 @@ public class AppWindow extends javax.swing.JFrame {
         }
         
         if(valid)
-        {
-            authLoginStatusLabel.setText("Login Successful!");
+        {   
+            Controller.setToken();
             
             ProjectPanel.setVisible(true);
             AuthPanel.setVisible(false);
             
             authLoginStatusLabel.setText("");
-         
+            
+            ProjectRefresh();
         }
         else
         {
@@ -294,8 +342,7 @@ public class AppWindow extends javax.swing.JFrame {
     private void projectLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectLogoutButtonActionPerformed
         // TODO add your handling code here:
         ProjectPanel.setVisible(false);
-        AuthPanel.setVisible(true);
-        Controller.auth.sessionID="";
+        Logout();
     }//GEN-LAST:event_projectLogoutButtonActionPerformed
 
     private void projectReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectReportButtonActionPerformed
@@ -303,6 +350,11 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectPanel.setVisible(false);
         ReportsPanel.setVisible(true);
     }//GEN-LAST:event_projectReportButtonActionPerformed
+
+    private void projectRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectRefreshButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectRefresh();
+    }//GEN-LAST:event_projectRefreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,6 +390,27 @@ public class AppWindow extends javax.swing.JFrame {
                 //new AppWindow().setVisible(true);
             }
         });
+    }
+    
+    private void Logout()
+    {
+        if(Controller.auth.logout())
+        {
+            authLoginStatusLabel.setText("Logout Successful");
+        }
+        else
+        {
+            authLoginStatusLabel.setText("Invalid Session Token");
+        }
+        
+        //Controller.clearToken();
+        
+        AuthPanel.setVisible(true);
+    }
+    
+    private void ProjectRefresh()
+    {
+        System.out.println(Controller.projects.getAllProject());
     }
     
     
