@@ -15,6 +15,12 @@ import java.util.logging.Logger;
 public class ProjectService extends Service
 {
     
+     /**
+     * List all Project
+     * @param 
+     * @return String 
+     * @throws java.lang.Exception 
+     */
     public String getAll()
     {
         String response="";
@@ -31,6 +37,12 @@ public class ProjectService extends Service
         return response;
     }
     
+     /**
+     * List individual Project
+     * @param String projectID
+     * @return String 
+     * @throws java.lang.Exception 
+     */
         public String getProject(String projectID)
     {
         String response="";
