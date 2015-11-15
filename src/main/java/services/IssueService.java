@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author Thomas Coolidge
  */
-public class ProjectService extends Service
+public class IssueService extends Service
 {
     
     public String getAll()
@@ -21,27 +21,27 @@ public class ProjectService extends Service
         
         try 
         {
-            response = super.list("Project");
+            response = super.list("Issue");
         } 
         catch (Exception ex) 
         {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IssueService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return response;
     }
     
-        public String getProject(String projectID)
+        public String getIssue(String issueID)
     {
         String response="";
         
         try 
         {
-            response = super.get("Project",projectID);
+            response = super.get("Issue",issueID);
         } 
         catch (Exception ex) 
         {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IssueService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return response;

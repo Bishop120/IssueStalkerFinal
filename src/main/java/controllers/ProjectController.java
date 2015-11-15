@@ -8,10 +8,10 @@ import services.*;
 
 /**
  *
- * @author danger
+ * @author Thomas Coolidge
  */
-public class ProjectController {
-    
+public class ProjectController 
+{
     public ProjectService projectModel;
     
     public ProjectController()
@@ -19,6 +19,14 @@ public class ProjectController {
         projectModel = new ProjectService();
     }
     
+    public String getAllProject()
+    {
+        String response;
+        
+        response = projectModel.getAll();
+        
+        return response;
+    }
     
     
 }

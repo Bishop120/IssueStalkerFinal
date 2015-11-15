@@ -20,8 +20,7 @@ public class Application {
     
     public static void main(String [] args)
     {
-        Controller controller = new Controller();
-        AuthView window = new AuthView(controller);
+        AppWindow window = new AppWindow();
         
         //Service service = new Service();
         try 

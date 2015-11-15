@@ -10,28 +10,76 @@ import java.util.logging.Logger;
 import services.AuthService;
 /**
  *
- * @author danger
+ * @author Thomas Coolidge
  */
-public class AuthController {
+public class AuthController 
+{
     public AuthService authModel;
-
-    public AuthController(){
+    public String sessionToken;
+    
+    public AuthController()
+    {
         authModel = new AuthService();
     }
-
-    public String get(String username, String password)
+    
+    public Boolean login(String username, String password)
     {
-        String str;
-
-        try
+        Boolean valid = false;
+        String response;
+        String[] temp;
+        
+        try 
         {
-            str = authModel.get(username, password);
-        }
-        catch (Exception ex)
-        {   str = "Invalid Login Attempt";
+            response = authModel.login(username, password);
+            if(response.contains("sessionToken"))
+            {
+                temp=response.split("\"");
+                sessionToken=temp[11];
+                sessionToken.replaceAll("\"","");
+               valid = true; 
+            }
+            else
+            {
+                sessionToken="";
+            }
+        } 
+        catch (Exception ex) 
+        {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            sessionToken="";
+            valid = false;
         }
-
-        return str;
+        
+        return valid;
+    }
+    
+    public Boolean logout()
+    {
+        Boolean valid = false;
+        String response;
+        
+        try 
+        {
+            response = authModel.logout();
+            if(response.contains("{}"))
+            {
+                
+                //sessionToken="";
+                valid = true; 
+            }
+            else
+            {
+                //sessionToken="";
+                valid=false;
+            }
+        } 
+        catch (Exception ex) 
+        {   
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            sessionToken="";
+            valid = false;
+        }
+        
+        return valid;
     }
 }
