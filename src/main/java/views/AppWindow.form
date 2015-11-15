@@ -225,7 +225,7 @@
         </Component>
         <Container class="javax.swing.JScrollPane" name="projectsScrollpane">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JButton button;&#xa;&#x9;&#x9;&#xa;JTextField text0;&#xa;&#x9;&#x9;&#xa;JTextField text1;&#xa;&#x9;&#x9;&#xa;JPanel buffer; //only 1, please&#xa;&#x9;&#x9;&#xa;JPanel subbuffer; //lots of these&#xa;&#xa;&#x9;&#x9;&#xa;//create stuff to put in the scroll pane&#xa;&#x9;&#x9;&#xa;buffer = new JPanel(new GridLayout(0, 1, 0, 4));&#xa;&#x9;&#xa;&#x9;&#x9;&#xa;for(int i = 0; i &lt; 20; i++)&#xa;&#x9;&#x9;{&#xa;&#x9;&#x9;&#x9;&#xa;subbuffer = new JPanel(new GridLayout(3, 1));&#xa;&#xa;&#x9;&#x9;&#x9;&#xa;button = new JButton(&quot;Project&quot; + i);&#xa;&#x9;&#x9;&#x9;&#xa;text0 = new JTextField(&quot;Project&quot; + i + &quot; description&quot;);&#xa;&#x9;&#x9;&#x9;&#xa;text1 = new JTextField(&quot;Project&quot; + i + &quot; details&quot;);&#xa;&#xa;&#x9;&#x9;&#x9;&#xa;subbuffer.add(button);&#xa;&#x9;&#x9;&#x9;&#xa;subbuffer.add(text0);&#xa;&#x9;&#x9;&#x9;&#xa;subbuffer.add(text1);&#xa;&#x9;&#x9;&#x9;&#xa;buffer.add(subbuffer);&#xa;&#x9;&#x9;&#xa;}&#xa;&#xa;&#x9;&#x9;&#xa;projectsScrollpane = new JScrollPane(buffer);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//ProjectRefresh();"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
