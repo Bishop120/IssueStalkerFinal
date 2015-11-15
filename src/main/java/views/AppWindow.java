@@ -7,7 +7,8 @@ package views;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 import controllers.Controller;
 
 /**
@@ -20,6 +21,7 @@ public class AppWindow extends javax.swing.JFrame {
      * Creates new form AppWindow
      */
     private Controller Controller;
+
     public AppWindow() {
         Controller = new Controller();
         initComponents();
@@ -148,6 +150,13 @@ public class AppWindow extends javax.swing.JFrame {
         });
 
         projectRefreshButton.setText("Refresh");
+        projectRefreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectRefreshButtonActionPerformed(evt);
+            }
+        });
+
+        //ProjectRefresh();
 
         projectReportButton.setText("Report Generator");
         projectReportButton.addActionListener(new java.awt.event.ActionListener() {
@@ -263,30 +272,29 @@ public class AppWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = authUsernameField.getText();
         String password = new String(authPasswordField.getPassword());
-        boolean valid=false;
-        
-        try
-        {
-            valid=Controller.auth.login(username, password);
-        }
-        catch (Exception ex)
-        {
+        boolean valid = false;
+
+        //Clear Password
+        authPasswordField.setText("");
+
+        try {
+            valid = Controller.auth.login(username, password);
+        } catch (Exception ex) {
             Logger.getLogger(AppWindow.class.getName()).log(Level.SEVERE, null, ex);
             valid = false;
         }
-        
-        if(valid)
-        {
-            authLoginStatusLabel.setText("Login Successful!");
-            
-            ProjectPanel.setVisible(true);
+
+        if (valid) {
+            Controller.setToken();
+
+            ProjectRefresh();
+
             AuthPanel.setVisible(false);
-            
+            ProjectPanel.setVisible(true);
+
             authLoginStatusLabel.setText("");
-         
-        }
-        else
-        {
+
+        } else {
             authLoginStatusLabel.setText("Invalid Username/Password!");
         }
     }//GEN-LAST:event_authSubmitButtonActionPerformed
@@ -294,8 +302,7 @@ public class AppWindow extends javax.swing.JFrame {
     private void projectLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectLogoutButtonActionPerformed
         // TODO add your handling code here:
         ProjectPanel.setVisible(false);
-        AuthPanel.setVisible(true);
-        Controller.auth.sessionID="";
+        Logout();
     }//GEN-LAST:event_projectLogoutButtonActionPerformed
 
     private void projectReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectReportButtonActionPerformed
@@ -303,6 +310,11 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectPanel.setVisible(false);
         ReportsPanel.setVisible(true);
     }//GEN-LAST:event_projectReportButtonActionPerformed
+
+    private void projectRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectRefreshButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectRefresh();
+    }//GEN-LAST:event_projectRefreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,8 +351,93 @@ public class AppWindow extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
+    private void Logout() {
+        if (Controller.auth.logout()) {
+            authLoginStatusLabel.setText("Logout Successful");
+        } else {
+            authLoginStatusLabel.setText("Invalid Session Token");
+        }
+
+        //Controller.clearToken();
+        AuthPanel.setVisible(true);
+    }
+
+    private void ProjectRefresh() 
+    {
+        String response = Controller.projects.getAllProject();
+        
+        System.out.println(response);
+
+        JPanel buffer; //only 1, please
+        
+//create stuff to put in the scroll pane
+        buffer = new JPanel(new GridLayout(0, 1, 0, 4));
+
+        for (int i = 0; i < 20; i++) 
+        {
+            JPanel subbuffer = new JPanel(new GridLayout(3, 1)); //lots of these
+
+            JButton projectbutton = new JButton("Project" + i);
+
+            JTextField text0 = new JTextField("Project" + i + " description");
+
+            JTextField text1 = new JTextField("Project" + i + " details");
+
+            subbuffer.add(projectbutton);
+
+            subbuffer.add(text0);
+
+            subbuffer.add(text1);
+
+            buffer.add(subbuffer);
+
+        }
+
+        this.projectsScrollpane = new JScrollPane(buffer);
+
+        javax.swing.GroupLayout ProjectPanelLayout = new javax.swing.GroupLayout(ProjectPanel);
+        ProjectPanel.setLayout(ProjectPanelLayout);
+        ProjectPanelLayout.setHorizontalGroup(
+                ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(projectLogoutButton))
+                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ProjectPanelLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(projectsScrollpane)
+                                        .addContainerGap())
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(projectRefreshButton)
+                                        .addGap(115, 115, 115))))
+        );
+        ProjectPanelLayout.setVerticalGroup(
+                ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ProjectPanelLayout.createSequentialGroup()
+                                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(ProjectPanelLayout.createSequentialGroup()
+                                        .addComponent(projectReportButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(projectAdminButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(projectLogoutButton)
+                                                .addComponent(projectRefreshButton))))
+                        .addContainerGap())
+        );
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminPanel;

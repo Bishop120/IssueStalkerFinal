@@ -12,48 +12,36 @@ import java.util.logging.Logger;
  *
  * @author Thomas Coolidge
  */
-public class ProjectService extends Service
+public class IssueService extends Service
 {
     
-     /**
-     * List all Project
-     * @param 
-     * @return String 
-     * @throws java.lang.Exception 
-     */
     public String getAll()
     {
         String response="";
         
         try 
         {
-            response = super.list("Project");
+            response = super.list("Issue");
         } 
         catch (Exception ex) 
         {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IssueService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return response;
     }
     
-     /**
-     * List individual Project
-     * @param String projectID
-     * @return String 
-     * @throws java.lang.Exception 
-     */
-        public String getProject(String projectID)
+        public String getIssue(String issueID)
     {
         String response="";
         
         try 
         {
-            response = super.get("Project",projectID);
+            response = super.get("Issue",issueID);
         } 
         catch (Exception ex) 
         {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IssueService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return response;
