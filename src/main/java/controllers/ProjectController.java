@@ -28,5 +28,23 @@ public class ProjectController
         return response;
     }
     
+    public String addProject(String name, String description, String comment)
+    {
+        String response;
+        
+        response = projectModel.postProject(description,name,comment);
+        
+        return response;
+    }
+    
+        public String deleteProject(String projectID)
+    {
+        String response;
+        
+        response = projectModel.deleteProject(projectID);
+        
+        return response;
+    }
+    
     
 }

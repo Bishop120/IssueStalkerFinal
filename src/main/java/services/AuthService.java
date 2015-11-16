@@ -33,7 +33,7 @@ public class AuthService extends Service
         System.out.println("post: " + url);
         super.request = new ClientRequest(url);
         super.prepareRequest();
-        this.response = request.get(String.class);
+        this.response = request.post(String.class);
         return (String) this.response.getEntity();
     }
 

@@ -58,6 +58,7 @@ public class AppWindow extends javax.swing.JFrame {
         projectRefreshButton = new javax.swing.JButton();
         projectsScrollpane = new javax.swing.JScrollPane();
         projectReportButton = new javax.swing.JButton();
+        projectAddButton = new javax.swing.JButton();
         AdminPanel = new javax.swing.JPanel();
         FeaturesPanel = new javax.swing.JPanel();
         IssuesPanel = new javax.swing.JPanel();
@@ -157,11 +158,20 @@ public class AppWindow extends javax.swing.JFrame {
         });
 
         //ProjectRefresh();
+        projectsScrollpane.setAutoscrolls(true);
+        projectsScrollpane.setPreferredSize(new java.awt.Dimension(320, 350));
 
         projectReportButton.setText("Report Generator");
         projectReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectReportButtonActionPerformed(evt);
+            }
+        });
+
+        projectAddButton.setText("Add Project");
+        projectAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectAddButtonActionPerformed(evt);
             }
         });
 
@@ -175,16 +185,17 @@ public class AppWindow extends javax.swing.JFrame {
                     .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(projectLogoutButton))
+                    .addComponent(projectLogoutButton)
+                    .addComponent(projectAddButton))
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(projectsScrollpane)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(projectRefreshButton)
-                        .addGap(115, 115, 115))))
+                        .addGap(115, 115, 115))
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         ProjectPanelLayout.setVerticalGroup(
             ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,16 +203,16 @@ public class AppWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(ProjectPanelLayout.createSequentialGroup()
                         .addComponent(projectReportButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(projectAdminButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(projectLogoutButton)
-                            .addComponent(projectRefreshButton))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(projectAddButton))
+                    .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectLogoutButton)
+                    .addComponent(projectRefreshButton))
                 .addContainerGap())
         );
 
@@ -316,6 +327,13 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectRefresh();
     }//GEN-LAST:event_projectRefreshButtonActionPerformed
 
+    private void projectAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectAddButtonActionPerformed
+        // TODO add your handling code here:
+        String response;
+        response = Controller.projects.addProject("test project", "test description", "test comment");
+        System.out.println(response);
+    }//GEN-LAST:event_projectAddButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -352,10 +370,14 @@ public class AppWindow extends javax.swing.JFrame {
         });
     }
 
-    private void Logout() {
-        if (Controller.auth.logout()) {
+    private void Logout() 
+    {
+        if (Controller.auth.logout()) 
+        {
             authLoginStatusLabel.setText("Logout Successful");
-        } else {
+        } 
+        else 
+        {
             authLoginStatusLabel.setText("Invalid Session Token");
         }
 
@@ -367,7 +389,8 @@ public class AppWindow extends javax.swing.JFrame {
     {
         String response = Controller.projects.getAllProject();
         
-        System.out.println(response);
+        //System.out.println(response);
+        //System.out.println(Controller.auth.sessionToken);
 
         JPanel buffer; //only 1, please
         
@@ -394,48 +417,55 @@ public class AppWindow extends javax.swing.JFrame {
 
         }
 
-        this.projectsScrollpane = new JScrollPane(buffer);
-
+        this.projectsScrollpane.add(buffer);
+        this.projectsScrollpane.setPreferredSize(new Dimension(320,350));
+        
         javax.swing.GroupLayout ProjectPanelLayout = new javax.swing.GroupLayout(ProjectPanel);
         ProjectPanel.setLayout(ProjectPanelLayout);
         ProjectPanelLayout.setHorizontalGroup(
-                ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(projectLogoutButton))
-                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ProjectPanelLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(projectsScrollpane)
-                                        .addContainerGap())
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(projectRefreshButton)
-                                        .addGap(115, 115, 115))))
+            ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(projectLogoutButton)
+                    .addComponent(projectAddButton))
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projectRefreshButton)
+                        .addGap(115, 115, 115))
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         ProjectPanelLayout.setVerticalGroup(
-                ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ProjectPanelLayout.createSequentialGroup()
-                                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(ProjectPanelLayout.createSequentialGroup()
-                                        .addComponent(projectReportButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(projectAdminButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(projectLogoutButton)
-                                                .addComponent(projectRefreshButton))))
-                        .addContainerGap())
+            ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProjectPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addComponent(projectReportButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(projectAdminButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(projectAddButton))
+                    .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectLogoutButton)
+                    .addComponent(projectRefreshButton))
+                .addContainerGap())
         );
-
+        
+        projectsScrollpane.revalidate();
+        projectsScrollpane.repaint();
+        
+        ProjectPanel.revalidate();
+        ProjectPanel.repaint();
     }
 
 
@@ -454,6 +484,7 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JButton authSubmitButton;
     private javax.swing.JTextField authUsernameField;
     private javax.swing.JLabel authUsernameLabel;
+    private javax.swing.JButton projectAddButton;
     private javax.swing.JButton projectAdminButton;
     private javax.swing.JButton projectLogoutButton;
     private javax.swing.JButton projectRefreshButton;
