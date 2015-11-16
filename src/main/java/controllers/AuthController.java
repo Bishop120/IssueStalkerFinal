@@ -61,6 +61,8 @@ public class AuthController
         try 
         {
             response = authModel.logout();
+            System.out.println(response);
+            
             if(response.contains("{}"))
             {
                 
