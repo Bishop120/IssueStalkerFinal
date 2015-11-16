@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package services;
+import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.client.*;
 import org.json.simple.parser.*;
 import org.json.*;
@@ -78,8 +79,7 @@ class Service
         System.out.println("post: " + url);
         this.request = new ClientRequest(url);
         this.prepareRequest();
-        JSONObject json = (JSONObject) parser.parse(post);
-        this.request.body("application/json",json);
+        this.request.body("text/plain",post);
         this.response = request.post(String.class);
         return (String) this.response.getEntity();
     }

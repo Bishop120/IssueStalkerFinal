@@ -32,7 +32,7 @@ public class ProjectController
     {
         String response;
         
-        response = projectModel.postProject(description,name,comment);
+        response = projectModel.postProject(name,description,comment);
         
         return response;
     }
