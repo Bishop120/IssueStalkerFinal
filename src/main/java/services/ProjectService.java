@@ -67,7 +67,7 @@ public class ProjectService extends Service
      * @return String 
      * @throws java.lang.Exception 
      */
-    public String postProject(String description, String name, String comment)
+    public String postProject(String name, String description, String comment)
     {
         String response="";
         
@@ -81,7 +81,7 @@ public class ProjectService extends Service
         project = project + "\"}";
         
         
-        //System.out.println(project);
+        System.out.println(project);
         
         try 
         {
