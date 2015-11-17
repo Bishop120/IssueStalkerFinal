@@ -519,8 +519,10 @@ public class AppWindow extends javax.swing.JFrame {
 
     private void projectDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteButtonActionPerformed
         // TODO add your handling code here:
-        projectDeleteDialog.setVisible(true);
+        projectDeleteDialog.setSize(440,400);
+        projectDeleteDialog.setLocationRelativeTo(null);
         ProjectDeleteRefresh();
+        projectDeleteDialog.setVisible(true);
     }//GEN-LAST:event_projectDeleteButtonActionPerformed
 
     private void projectNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNameTextActionPerformed
@@ -663,60 +665,22 @@ public class AppWindow extends javax.swing.JFrame {
             subbuffer.add(text0);
 
             subbuffer.add(text1);
-
+            
             buffer.add(subbuffer);
 
         }
-
-        this.projectsScrollpane.add(buffer);
-        this.projectsScrollpane.setPreferredSize(new Dimension(320,350));
         
-        javax.swing.GroupLayout ProjectPanelLayout = new javax.swing.GroupLayout(ProjectPanel);
-        ProjectPanel.setLayout(ProjectPanelLayout);
-        ProjectPanelLayout.setHorizontalGroup(
-            ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(projectLogoutButton)
-                    .addComponent(projectAddButton))
-                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(projectRefreshButton)
-                        .addGap(115, 115, 115))
-                    .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        ProjectPanelLayout.setVerticalGroup(
-            ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ProjectPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addComponent(projectReportButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(projectAdminButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(projectAddButton))
-                    .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projectLogoutButton)
-                    .addComponent(projectRefreshButton))
-                .addContainerGap())
-        );
+        Dimension height = buffer.getPreferredSize();
+        buffer.setSize(new Dimension(projectsScrollpane.getWidth(),(int) height.getHeight()));
         
-        projectsScrollpane.revalidate();
-        projectsScrollpane.repaint();
+        projectsScrollpane.removeAll();
+        projectsScrollpane.setViewport(null);
         
+        projectsScrollpane.add(buffer);
+        projectsScrollpane.setPreferredSize(buffer.getPreferredSize());
+        projectsScrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        //System.out.println(projectsScrollpane.getViewport());
         ProjectPanel.revalidate();
-        ProjectPanel.repaint();
     }
     
     private void ProjectDeleteRefresh()
