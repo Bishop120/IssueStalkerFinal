@@ -24,7 +24,8 @@ public class AppWindow extends javax.swing.JFrame {
      */
     private Controller Controller;
 
-    public AppWindow() {
+    public AppWindow() 
+    {
         Controller = new Controller();
         initComponents();
         this.setVisible(true);
@@ -59,7 +60,7 @@ public class AppWindow extends javax.swing.JFrame {
         projectDeleteDialog = new javax.swing.JDialog();
         projectDeleteDialogButton = new javax.swing.JButton();
         projectDeleteCancelDialogButton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        projectDeleteScrollpane = new javax.swing.JScrollPane();
         projectDeleteJList = new javax.swing.JList<>();
         AuthPanel = new javax.swing.JPanel();
         authPasswordLabell = new javax.swing.JLabel();
@@ -168,6 +169,9 @@ public class AppWindow extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
+        projectDeleteDialog.setPreferredSize(new java.awt.Dimension(440, 400));
+        projectDeleteDialog.setSize(new java.awt.Dimension(440, 400));
+
         projectDeleteDialogButton.setText("Delete");
         projectDeleteDialogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +191,7 @@ public class AppWindow extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(projectDeleteJList);
+        projectDeleteScrollpane.setViewportView(projectDeleteJList);
 
         javax.swing.GroupLayout projectDeleteDialogLayout = new javax.swing.GroupLayout(projectDeleteDialog.getContentPane());
         projectDeleteDialog.getContentPane().setLayout(projectDeleteDialogLayout);
@@ -196,7 +200,7 @@ public class AppWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projectDeleteDialogLayout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(projectDeleteScrollpane)
                     .addGroup(projectDeleteDialogLayout.createSequentialGroup()
                         .addComponent(projectDeleteDialogButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
@@ -207,7 +211,7 @@ public class AppWindow extends javax.swing.JFrame {
             projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projectDeleteDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(projectDeleteScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectDeleteDialogButton)
@@ -545,10 +549,40 @@ public class AppWindow extends javax.swing.JFrame {
 
     private void projectDeleteCancelDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteCancelDialogButtonActionPerformed
         // TODO add your handling code here:
+        projectDeleteDialog.setVisible(false);
     }//GEN-LAST:event_projectDeleteCancelDialogButtonActionPerformed
 
     private void projectDeleteDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteDialogButtonActionPerformed
         // TODO add your handling code here:
+        int indexes[];
+        Vector names = new Vector(0,0);
+        Vector projectIDs = new Vector(0,0);
+        String response;
+        String temp[];
+        
+        indexes = projectDeleteJList.getSelectedIndices();
+        
+        response = Controller.projects.getAllProject();
+       
+        response = response.replaceAll(":", "");
+        
+        temp = response.split("\"");
+        
+        for (int i = 0 ; i < temp.length ; i++)
+        {
+            if(temp[i].matches("name"))
+            {
+                projectIDs.addElement(new String(temp[i+6]));
+            }
+        }
+        
+        for(int i = 0; i < indexes.length; i++)
+        {
+            response = Controller.projects.deleteProject((String) projectIDs.get(indexes[i]));
+            System.out.println(response);
+        }
+        
+        ProjectDeleteRefresh();
     }//GEN-LAST:event_projectDeleteDialogButtonActionPerformed
 
     /**
@@ -691,9 +725,9 @@ public class AppWindow extends javax.swing.JFrame {
         
         response = Controller.projects.getAllProject();
         
-        Vector names;
+        Vector names = new Vector(0,0);
         
-        Vector projectIDs;
+        Vector projectIDs = new Vector(0,0);
         
         String temp[];
         
@@ -703,8 +737,15 @@ public class AppWindow extends javax.swing.JFrame {
         
         for (int i = 0 ; i < temp.length ; i++)
         {
-            System.out.println(temp[i]);
+            if(temp[i].matches("name"))
+            {
+                names.addElement(new String (temp[i+2]));
+                projectIDs.addElement(new String(temp[i+6]));
+            }
         }
+        
+        projectDeleteJList = new JList(names);
+        projectDeleteScrollpane.setViewportView(projectDeleteJList);
         
     }
 
@@ -726,7 +767,6 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JLabel authUsernameLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton projectAddButton;
     private javax.swing.JDialog projectAddDialog;
     private javax.swing.JButton projectAddDialogButton;
@@ -739,6 +779,7 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JDialog projectDeleteDialog;
     private javax.swing.JButton projectDeleteDialogButton;
     private javax.swing.JList<String> projectDeleteJList;
+    private javax.swing.JScrollPane projectDeleteScrollpane;
     private javax.swing.JLabel projectDescriptionLabel;
     private javax.swing.JTextArea projectDescriptionText;
     private javax.swing.JButton projectLogoutButton;
