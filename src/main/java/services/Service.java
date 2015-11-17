@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package services;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
-import org.json.simple.parser.JSONParser;
+import javax.ws.rs.core.MediaType;
+import org.jboss.resteasy.client.*;
+import org.json.simple.parser.*;
+import org.json.*;
+
 /**
  *
  * @author danger
@@ -64,20 +66,55 @@ class Service
         return (String) this.response.getEntity();
     }
     
-        /**
-     * GET a given class
+     /**
+     * Post to a given class
      * @param className
-     * @param objectId
+     * @param post
      * @return 
      * @throws java.lang.Exception 
      */
-    public String update(String className, String objectId) throws Exception
+    public String post(String className, String post) throws Exception
     {
-        String url = this.baseURl + "/classes/" + className + "/" + objectId;
-        System.out.println("get: " + url);
+        String url = this.baseURl + "/classes/" + className;
+        System.out.println("post: " + url);
         this.request = new ClientRequest(url);
         this.prepareRequest();
-        this.response = request.get(String.class);
+        this.request.body("text/plain",post);
+        this.response = request.post(String.class);
+        return (String) this.response.getEntity();
+    }
+    
+    /**
+     * Post to a given class
+     * @param className
+     * @param obejctID
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public String delete(String className, String objectID) throws Exception
+    {
+        String url = this.baseURl + "/classes/" + className + "/" + objectID;
+        System.out.println("delete: " + url);
+        this.request = new ClientRequest(url);
+        this.prepareRequest();
+        this.response = request.delete(String.class);
+        return (String) this.response.getEntity();
+    }
+    
+    /**
+     * Post to a given class
+     * @param className
+     * @param obejctID
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public String update(String className, String objectID, String update) throws Exception
+    {
+        String url = this.baseURl + "/classes/" + className + "/" + objectID;
+        System.out.println("update: " + url);
+        this.request = new ClientRequest(url);
+        this.prepareRequest();
+        this.response = request.put(String.class);
         return (String) this.response.getEntity();
     }
     
