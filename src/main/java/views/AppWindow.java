@@ -75,11 +75,11 @@ public class AppWindow extends javax.swing.JFrame {
         projectAdminButton = new javax.swing.JButton();
         projectLogoutButton = new javax.swing.JButton();
         projectRefreshButton = new javax.swing.JButton();
-        projectsScrollpane = new javax.swing.JScrollPane();
         projectReportButton = new javax.swing.JButton();
         projectAddButton = new javax.swing.JButton();
         projectUpdateButton = new javax.swing.JButton();
         projectDeleteButton = new javax.swing.JButton();
+        projectScrollPane = new javax.swing.JScrollPane();
         AdminPanel = new javax.swing.JPanel();
         FeaturesPanel = new javax.swing.JPanel();
         IssuesPanel = new javax.swing.JPanel();
@@ -312,10 +312,6 @@ public class AppWindow extends javax.swing.JFrame {
             }
         });
 
-        //ProjectRefresh();
-        projectsScrollpane.setAutoscrolls(true);
-        projectsScrollpane.setPreferredSize(new java.awt.Dimension(320, 350));
-
         projectReportButton.setText("Report Generator");
         projectReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,14 +356,13 @@ public class AppWindow extends javax.swing.JFrame {
                     .addComponent(projectAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
                         .addComponent(projectRefreshButton)
                         .addGap(115, 115, 115))
-                    .addGroup(ProjectPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(projectsScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                        .addComponent(projectScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -376,9 +371,9 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectPanelLayout.setVerticalGroup(
             ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProjectPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProjectPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(projectReportButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(projectAdminButton)
@@ -387,9 +382,12 @@ public class AppWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(projectUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projectScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectLogoutButton)
                     .addComponent(projectRefreshButton))
@@ -642,9 +640,28 @@ public class AppWindow extends javax.swing.JFrame {
     {
         String response = Controller.projects.getAllProject();
         
-        //System.out.println(response);
-        //System.out.println(Controller.auth.sessionToken);
+        Vector names = new Vector(0,0);
+        Vector projectIDs = new Vector(0,0);
+        Vector descriptions = new Vector(0,0);
+        Vector comments = new Vector(0,0);
 
+        String temp[];
+       
+        response = response.replaceAll(":", "");
+        
+        temp = response.split("\"");
+        
+        for (int i = 0 ; i < temp.length ; i++)
+        {
+            System.out.println(temp[i]);
+            
+            if(temp[i].matches("name"))
+            {
+                names.addElement(new String(temp[i+2]));
+                projectIDs.addElement(new String(temp[i+6]));
+            }
+        }
+        
         JPanel buffer; //only 1, please
         
 //create stuff to put in the scroll pane
@@ -670,17 +687,9 @@ public class AppWindow extends javax.swing.JFrame {
 
         }
         
-        Dimension height = buffer.getPreferredSize();
-        buffer.setSize(new Dimension(projectsScrollpane.getWidth(),(int) height.getHeight()));
-        
-        projectsScrollpane.removeAll();
-        projectsScrollpane.setViewport(null);
-        
-        projectsScrollpane.add(buffer);
-        projectsScrollpane.setPreferredSize(buffer.getPreferredSize());
-        projectsScrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        //System.out.println(projectsScrollpane.getViewport());
-        ProjectPanel.revalidate();
+        projectScrollPane.add(buffer);
+        projectScrollPane.setViewportView(buffer);
+
     }
     
     private void ProjectDeleteRefresh()
@@ -751,7 +760,7 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JTextField projectNameText;
     private javax.swing.JButton projectRefreshButton;
     private javax.swing.JButton projectReportButton;
+    private javax.swing.JScrollPane projectScrollPane;
     private javax.swing.JButton projectUpdateButton;
-    private javax.swing.JScrollPane projectsScrollpane;
     // End of variables declaration//GEN-END:variables
 }
