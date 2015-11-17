@@ -16,8 +16,8 @@ import org.json.*;
 class Service 
 {
     final String baseURl = "https://api.parse.com/1";
-    private final String parseAppId = "ejdm9iw3ff8CG2JVWX33CiLkpzwngMYTMyQ4CNE0";
-    private final String restApiKey = "ZokE5oRI2ibLXmaPcsxLoXx4eCvnYHHZcc4cAnuu";
+    private final String parseAppId = "fVkE0wvEaWTIxPMW5wE3QDOgkQ0vM7UhfSPUBDEh";
+    private final String restApiKey = "0JJSBTESRk0Q1JNs0nwCpBGGLFZxQxkibOeoYe49";
     ClientRequest request;
     ClientResponse response;
     private static String sessionToken;
@@ -31,6 +31,15 @@ class Service
         this.request.header("X-Parse-Application-Id", this.parseAppId);
         this.request.header("X-Parse-REST-API-Key", this.restApiKey);
         this.request.header("X-Parse-Session-Token", this.sessionToken);
+    }
+    
+    /**
+     * Attach Given Headers
+     */
+    void prepareLogin() 
+    {
+        this.request.header("X-Parse-Application-Id", this.parseAppId);
+        this.request.header("X-Parse-REST-API-Key", this.restApiKey);
     }
     
     /**
