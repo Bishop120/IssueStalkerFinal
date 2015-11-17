@@ -31,6 +31,23 @@ public class FeatureService extends Service
         return response;
     }
     
+    public String getProjectFeatures(String projectID)
+    {
+        String response ="";
+        
+        try
+        {
+            response = super.getProjectId(projectID);
+        } 
+        catch (Exception ex) 
+        {
+            Logger.getLogger(FeatureService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return response;
+    }
+    
     public String getFeature(String featureID)
     {
         String response="";
@@ -81,7 +98,7 @@ public class FeatureService extends Service
      * @return String 
      * @throws java.lang.Exception 
      */
-    public String deleteProject(String projectID)
+    public String deleteFeature(String projectID, String featureID)
     {
         String response="";
         

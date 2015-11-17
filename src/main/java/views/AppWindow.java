@@ -17,12 +17,16 @@ import controllers.Controller;
  *
  * @author mac
  */
-public class AppWindow extends javax.swing.JFrame {
+public class AppWindow extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form AppWindow
      */
     private Controller Controller;
+    
+    private String ProjectID = "";
+    private String FeatureID = "";
 
     public AppWindow() 
     {
@@ -36,7 +40,7 @@ public class AppWindow extends javax.swing.JFrame {
         IssuesPanel.setVisible(false);
         ReportsPanel.setVisible(false);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,11 +90,6 @@ public class AppWindow extends javax.swing.JFrame {
         ReportsPanel = new javax.swing.JPanel();
 
         projectNameText.setText("Project Name");
-        projectNameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectNameTextActionPerformed(evt);
-            }
-        });
 
         projectNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         projectNameLabel.setText("Project Name");
@@ -221,6 +220,7 @@ public class AppWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Issue Tracker");
+        setName("Issue Tracker Frame"); // NOI18N
         getContentPane().setLayout(new java.awt.CardLayout());
 
         AuthPanel.setPreferredSize(new java.awt.Dimension(500, 400));
@@ -228,6 +228,11 @@ public class AppWindow extends javax.swing.JFrame {
         authPasswordLabell.setText("Password");
 
         authPasswordField.setPreferredSize(new java.awt.Dimension(130, 26));
+        authPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                authPasswordFieldKeyPressed(evt);
+            }
+        });
 
         authSubmitButton.setText("Submit");
         authSubmitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -454,38 +459,16 @@ public class AppWindow extends javax.swing.JFrame {
 
     private void authCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authCancelButtonActionPerformed
         // TODO add your handling code here:
+        if(Controller.getToken()!=null)
+        {
+            Logout();
+        }
         System.exit(0);
     }//GEN-LAST:event_authCancelButtonActionPerformed
 
     private void authSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authSubmitButtonActionPerformed
         // TODO add your handling code here:
-        String username = authUsernameField.getText();
-        String password = new String(authPasswordField.getPassword());
-        boolean valid = false;
-
-        //Clear Password
-        authPasswordField.setText("");
-
-        try {
-            valid = Controller.auth.login(username, password);
-        } catch (Exception ex) {
-            Logger.getLogger(AppWindow.class.getName()).log(Level.SEVERE, null, ex);
-            valid = false;
-        }
-
-        if (valid) {
-            Controller.setToken();
-
-            ProjectRefresh();
-
-            AuthPanel.setVisible(false);
-            ProjectPanel.setVisible(true);
-
-            authLoginStatusLabel.setText("");
-
-        } else {
-            authLoginStatusLabel.setText("Invalid Username/Password!");
-        }
+        Login();
     }//GEN-LAST:event_authSubmitButtonActionPerformed
 
     private void projectLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectLogoutButtonActionPerformed
@@ -522,10 +505,6 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectDeleteRefresh();
         projectDeleteDialog.setVisible(true);
     }//GEN-LAST:event_projectDeleteButtonActionPerformed
-
-    private void projectNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_projectNameTextActionPerformed
 
     private void projectAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectAddDialogButtonActionPerformed
         // TODO add your handling code here:
@@ -585,6 +564,14 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectDeleteRefresh();
     }//GEN-LAST:event_projectDeleteDialogButtonActionPerformed
 
+    private void authPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_authPasswordFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        {
+          Login();
+        }
+    }//GEN-LAST:event_authPasswordFieldKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -620,6 +607,46 @@ public class AppWindow extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void Login()
+    {
+        String username = authUsernameField.getText();
+        String password = new String(authPasswordField.getPassword());
+        boolean valid = false;
+
+        //Clear Password
+        authPasswordField.setText("");
+
+        try 
+        {
+            valid = Controller.auth.login(username, password);
+            
+        }
+        
+        catch (Exception ex) 
+        {
+            Logger.getLogger(AppWindow.class.getName()).log(Level.SEVERE, null, ex);
+            valid = false;
+        }
+
+        if (valid) 
+        {
+            Controller.setToken();
+
+            ProjectRefresh();
+
+            AuthPanel.setVisible(false);
+            ProjectPanel.setVisible(true);
+
+            authLoginStatusLabel.setText("");
+
+        } 
+        
+        else 
+        {
+            authLoginStatusLabel.setText("Invalid Username/Password!");
+        }
+    }
 
     private void Logout() 
     {
@@ -641,6 +668,81 @@ public class AppWindow extends javax.swing.JFrame {
         String response = Controller.projects.getAllProject();
         
         Vector names = new Vector(0,0);
+        final Vector projectIDs = new Vector(0,0);
+        Vector descriptions = new Vector(0,0);
+        Vector comments = new Vector(0,0);
+
+        String temp[];
+       
+        response = response.replaceAll(":", "");
+        
+        temp = response.split("\"");
+        
+        for (int i = 0 ; i < temp.length ; i++)
+        {
+            if(temp[i].matches("name"))
+            {
+                names.addElement(new String(temp[i+2]));
+            }
+            if(temp[i].matches("comment"))
+            {
+                comments.addElement(new String(temp[i+2]));
+            }
+            if(temp[i].matches("description"))
+            {
+                descriptions.addElement(new String(temp[i+2]));
+            }
+            if(temp[i].matches("objectId"))
+            {
+                projectIDs.addElement(new String(temp[i+2]));
+            }
+        }
+        
+        JPanel buffer; //only 1, please
+        
+//create stuff to put in the scroll pane
+        buffer = new JPanel(new GridLayout(0, 1, 0, 4));
+
+        for (int i = 0; i < names.size() ; i++) 
+        {
+            JPanel subbuffer = new JPanel(new GridLayout(3, 1)); //lots of these
+
+            final int x = i;
+            JButton projectbutton = new JButton((String)names.get(x));
+            
+            projectbutton.addActionListener(new java.awt.event.ActionListener() 
+            {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+                ProjectID = (String)projectIDs.get(x);
+                //System.out.println(ProjectID);
+                System.out.println(Controller.features.getProjectFeatures(ProjectID));
+            }
+            });
+
+            JLabel text0 = new JLabel((String)descriptions.get(i));
+
+            JLabel text1 = new JLabel((String)comments.get(i));
+
+            subbuffer.add(projectbutton);
+
+            subbuffer.add(text0);
+
+            subbuffer.add(text1);
+            
+            buffer.add(subbuffer);
+
+        }
+        
+        projectScrollPane.add(buffer);
+        projectScrollPane.setViewportView(buffer);
+
+    }
+    private void FeatureRefresh() 
+    {
+        String response = Controller.features.getProjectFeatures(ProjectID);
+        
+        Vector names = new Vector(0,0);
         Vector projectIDs = new Vector(0,0);
         Vector descriptions = new Vector(0,0);
         Vector comments = new Vector(0,0);
@@ -658,7 +760,18 @@ public class AppWindow extends javax.swing.JFrame {
             if(temp[i].matches("name"))
             {
                 names.addElement(new String(temp[i+2]));
-                projectIDs.addElement(new String(temp[i+6]));
+            }
+            if(temp[i].matches("comment"))
+            {
+                comments.addElement(new String(temp[i+2]));
+            }
+            if(temp[i].matches("description"))
+            {
+                descriptions.addElement(new String(temp[i+2]));
+            }
+            if(temp[i].matches("objectId"))
+            {
+                projectIDs.addElement(new String(temp[i+2]));
             }
         }
         
@@ -667,15 +780,15 @@ public class AppWindow extends javax.swing.JFrame {
 //create stuff to put in the scroll pane
         buffer = new JPanel(new GridLayout(0, 1, 0, 4));
 
-        for (int i = 0; i < 20; i++) 
+        for (int i = 0; i < names.size() ; i++) 
         {
             JPanel subbuffer = new JPanel(new GridLayout(3, 1)); //lots of these
 
-            JButton projectbutton = new JButton("Project" + i);
+            JButton projectbutton = new JButton((String)names.get(i));
 
-            JTextField text0 = new JTextField("Project" + i + " description");
+            JTextField text0 = new JTextField((String)descriptions.get(i));
 
-            JTextField text1 = new JTextField("Project" + i + " details");
+            JTextField text1 = new JTextField((String)comments.get(i));
 
             subbuffer.add(projectbutton);
 

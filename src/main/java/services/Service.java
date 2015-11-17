@@ -75,6 +75,25 @@ class Service
         return (String) this.response.getEntity();
     }
     
+    /**
+     * GET all Milestones with a given projectID
+     * @param className
+     * @param objectId
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public String getProjectId(String objectId) throws Exception
+    {
+        String query = "where={\"project\":{\"__type\":\"Pointer\",\"className\":\"Project\",\"objectId\":\"" + objectId + "\"}}";
+        String url = this.baseURl + "/classes/Milestone/"+query;
+        System.out.println("get: " + url);
+        this.request = new ClientRequest(url);
+        this.prepareRequest();
+        //this.request.queryParameter("project", query);
+        this.response = request.get(String.class);
+        return (String) this.response.getEntity();
+    }
+    
      /**
      * Post to a given class
      * @param className
