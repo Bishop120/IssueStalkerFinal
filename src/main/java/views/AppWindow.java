@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
+
 import controllers.Controller;
 
 /**
@@ -54,6 +56,11 @@ public class AppWindow extends javax.swing.JFrame {
         projectCommentsText = new javax.swing.JTextArea();
         projectAddDialogButton = new javax.swing.JButton();
         projectCancelDialogButton = new javax.swing.JButton();
+        projectDeleteDialog = new javax.swing.JDialog();
+        projectDeleteDialogButton = new javax.swing.JButton();
+        projectDeleteCancelDialogButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        projectDeleteJList = new javax.swing.JList<>();
         AuthPanel = new javax.swing.JPanel();
         authPasswordLabell = new javax.swing.JLabel();
         authPasswordField = new javax.swing.JPasswordField();
@@ -159,6 +166,53 @@ public class AppWindow extends javax.swing.JFrame {
                     .addComponent(projectAddDialogButton)
                     .addComponent(projectCancelDialogButton))
                 .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        projectDeleteDialogButton.setText("Delete");
+        projectDeleteDialogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectDeleteDialogButtonActionPerformed(evt);
+            }
+        });
+
+        projectDeleteCancelDialogButton.setText("Cancel");
+        projectDeleteCancelDialogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projectDeleteCancelDialogButtonActionPerformed(evt);
+            }
+        });
+
+        projectDeleteJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(projectDeleteJList);
+
+        javax.swing.GroupLayout projectDeleteDialogLayout = new javax.swing.GroupLayout(projectDeleteDialog.getContentPane());
+        projectDeleteDialog.getContentPane().setLayout(projectDeleteDialogLayout);
+        projectDeleteDialogLayout.setHorizontalGroup(
+            projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projectDeleteDialogLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(projectDeleteDialogLayout.createSequentialGroup()
+                        .addComponent(projectDeleteDialogButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addComponent(projectDeleteCancelDialogButton)))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        projectDeleteDialogLayout.setVerticalGroup(
+            projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projectDeleteDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(projectDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projectDeleteDialogButton)
+                    .addComponent(projectDeleteCancelDialogButton))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -296,13 +350,12 @@ public class AppWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(projectReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(projectAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(projectReportButton)
+                    .addComponent(projectAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectLogoutButton)
-                    .addComponent(projectAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(projectAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProjectPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,7 +385,7 @@ public class AppWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(projectsScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ProjectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectLogoutButton)
                     .addComponent(projectRefreshButton))
@@ -345,11 +398,11 @@ public class AppWindow extends javax.swing.JFrame {
         AdminPanel.setLayout(AdminPanelLayout);
         AdminPanelLayout.setHorizontalGroup(
             AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         AdminPanelLayout.setVerticalGroup(
             AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         getContentPane().add(AdminPanel, "card4");
@@ -358,11 +411,11 @@ public class AppWindow extends javax.swing.JFrame {
         FeaturesPanel.setLayout(FeaturesPanelLayout);
         FeaturesPanelLayout.setHorizontalGroup(
             FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         FeaturesPanelLayout.setVerticalGroup(
             FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         getContentPane().add(FeaturesPanel, "card5");
@@ -371,11 +424,11 @@ public class AppWindow extends javax.swing.JFrame {
         IssuesPanel.setLayout(IssuesPanelLayout);
         IssuesPanelLayout.setHorizontalGroup(
             IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         IssuesPanelLayout.setVerticalGroup(
             IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         getContentPane().add(IssuesPanel, "card6");
@@ -384,11 +437,11 @@ public class AppWindow extends javax.swing.JFrame {
         ReportsPanel.setLayout(ReportsPanelLayout);
         ReportsPanelLayout.setHorizontalGroup(
             ReportsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         ReportsPanelLayout.setVerticalGroup(
             ReportsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         getContentPane().add(ReportsPanel, "card7");
@@ -462,10 +515,8 @@ public class AppWindow extends javax.swing.JFrame {
 
     private void projectDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteButtonActionPerformed
         // TODO add your handling code here:
-        String response;
-        response = Controller.projects.deleteProject("gSgz6JAzQ5");
-        System.out.println(response);
-        ProjectRefresh();
+        projectDeleteDialog.setVisible(true);
+        ProjectDeleteRefresh();
     }//GEN-LAST:event_projectDeleteButtonActionPerformed
 
     private void projectNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectNameTextActionPerformed
@@ -491,6 +542,14 @@ public class AppWindow extends javax.swing.JFrame {
         projectDescriptionText.setText("");
         projectNameText.setText("Project Name");
     }//GEN-LAST:event_projectCancelDialogButtonActionPerformed
+
+    private void projectDeleteCancelDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteCancelDialogButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectDeleteCancelDialogButtonActionPerformed
+
+    private void projectDeleteDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteDialogButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectDeleteDialogButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -625,6 +684,29 @@ public class AppWindow extends javax.swing.JFrame {
         ProjectPanel.revalidate();
         ProjectPanel.repaint();
     }
+    
+    private void ProjectDeleteRefresh()
+    {
+        String response;
+        
+        response = Controller.projects.getAllProject();
+        
+        Vector names;
+        
+        Vector projectIDs;
+        
+        String temp[];
+        
+        response = response.replaceAll(":", "");
+        
+        temp = response.split("\"");
+        
+        for (int i = 0 ; i < temp.length ; i++)
+        {
+            System.out.println(temp[i]);
+        }
+        
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -644,6 +726,7 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JLabel authUsernameLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton projectAddButton;
     private javax.swing.JDialog projectAddDialog;
     private javax.swing.JButton projectAddDialogButton;
@@ -652,6 +735,10 @@ public class AppWindow extends javax.swing.JFrame {
     private javax.swing.JLabel projectCommentsLabel;
     private javax.swing.JTextArea projectCommentsText;
     private javax.swing.JButton projectDeleteButton;
+    private javax.swing.JButton projectDeleteCancelDialogButton;
+    private javax.swing.JDialog projectDeleteDialog;
+    private javax.swing.JButton projectDeleteDialogButton;
+    private javax.swing.JList<String> projectDeleteJList;
     private javax.swing.JLabel projectDescriptionLabel;
     private javax.swing.JTextArea projectDescriptionText;
     private javax.swing.JButton projectLogoutButton;
