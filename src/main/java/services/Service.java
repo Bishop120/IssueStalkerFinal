@@ -7,7 +7,7 @@ package services;
 //import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.client.*;
 import org.json.simple.parser.*;
-//import org.json.*;
+import org.json.*;
 import java.net.URLEncoder;
 
 /**
@@ -98,16 +98,17 @@ class Service
      * Post to a given class
      * @param className
      * @param post
-     * @return 
+     * @return String
      * @throws java.lang.Exception 
      */
     public String post(String className, String post) throws Exception
     {
+        JSONObject json = new JSONObject(post);
         String url = this.baseURl + "/classes/" + className;
         System.out.println("post: " + url);
         this.request = new ClientRequest(url);
         this.prepareRequest();
-        this.request.body("application/x-www-form-urlencoded",URLEncoder.encode(post, "UTF-8"));
+        this.request.body("*/*",json);
         this.response = request.post(String.class);
         return (String) this.response.getEntity();
     }

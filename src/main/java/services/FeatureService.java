@@ -75,7 +75,7 @@ public class FeatureService extends Service
         feature = feature + description;
         feature = feature + "\",\"comment\":\"";
         feature = feature + comment;
-        feature = feature + ",\"project\":{\"__type\": \"Pointer\",\"className\": \"Project\",\"objectId\": \"";
+        feature = feature + "\",\"project\":{\"__type\": \"Pointer\",\"className\": \"Project\",\"objectId\": \"";
         feature = feature + ProjectID;
         feature = feature + "\"}}";
         
@@ -99,13 +99,13 @@ public class FeatureService extends Service
      * @return String 
      * @throws java.lang.Exception 
      */
-    public String deleteFeature(String projectID, String featureID)
+    public String deleteFeature(String featureID)
     {
         String response="";
         
         try 
         {
-            response = super.delete("Milestone",projectID);
+            response = super.delete("Milestone",featureID);
         } 
         catch (Exception ex) 
         {

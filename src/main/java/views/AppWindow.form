@@ -348,16 +348,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace pref="66" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="projectDeleteScrollpane1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="featuresDeleteScrollpane" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="projectDeleteDialogButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="120" max="32767" attributes="0"/>
-                          <Component id="projectDeleteCancelDialogButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="featuresDeleteDialogButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="136" max="32767" attributes="0"/>
+                          <Component id="featuresDeleteCancelDialogButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -365,42 +365,42 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="projectDeleteScrollpane1" pref="228" max="32767" attributes="0"/>
+                  <Component id="featuresDeleteScrollpane" pref="278" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="projectDeleteDialogButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="projectDeleteCancelDialogButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="featuresDeleteDialogButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="featuresDeleteCancelDialogButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="81" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="projectDeleteDialogButton1">
+        <Component class="javax.swing.JButton" name="featuresDeleteDialogButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectDeleteDialogButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featuresDeleteDialogButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="projectDeleteCancelDialogButton1">
+        <Component class="javax.swing.JButton" name="featuresDeleteCancelDialogButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectDeleteCancelDialogButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featuresDeleteCancelDialogButtonActionPerformed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="projectDeleteScrollpane1">
+        <Container class="javax.swing.JScrollPane" name="featuresDeleteScrollpane">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="projectDeleteJList1">
+            <Component class="javax.swing.JList" name="featuresDeleteJList">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="5">
@@ -790,25 +790,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="featuresReportButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="featuresAdminButton" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="featuresLogoutButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="featuresAddButton" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="featuresUpdateButton" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="featuresDeleteButton" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="featuresProjectButton" alignment="2" max="32767" attributes="0"/>
+                      <Component id="featuresDeleteButton" alignment="2" max="32767" attributes="0"/>
+                      <Component id="featuresUpdateButton" alignment="2" max="32767" attributes="0"/>
+                      <Component id="featuresAddButton" alignment="2" max="32767" attributes="0"/>
+                      <Component id="featuresAdminButton" alignment="2" max="32767" attributes="0"/>
+                      <Component id="featuresReportButton" alignment="2" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
                           <Component id="featuresRefreshButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="featuresScrollPane" min="-2" pref="324" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="featuresScrollPane" min="-2" pref="388" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                  <Component id="featuresLogoutButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -827,6 +832,8 @@
                           <Component id="featuresUpdateButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="featuresDeleteButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="featuresProjectButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -923,6 +930,14 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
         </Container>
+        <Component class="javax.swing.JButton" name="featuresProjectButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Projects"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featuresProjectButtonActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

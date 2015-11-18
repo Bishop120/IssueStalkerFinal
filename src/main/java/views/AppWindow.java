@@ -78,10 +78,10 @@ public class AppWindow extends javax.swing.JFrame
         featuresAddDialogButton = new javax.swing.JButton();
         featuresCancelDialogButton = new javax.swing.JButton();
         featuresDeleteDialog = new javax.swing.JDialog();
-        projectDeleteDialogButton1 = new javax.swing.JButton();
-        projectDeleteCancelDialogButton1 = new javax.swing.JButton();
-        projectDeleteScrollpane1 = new javax.swing.JScrollPane();
-        projectDeleteJList1 = new javax.swing.JList<>();
+        featuresDeleteDialogButton = new javax.swing.JButton();
+        featuresDeleteCancelDialogButton = new javax.swing.JButton();
+        featuresDeleteScrollpane = new javax.swing.JScrollPane();
+        featuresDeleteJList = new javax.swing.JList<>();
         AuthPanel = new javax.swing.JPanel();
         authPasswordLabell = new javax.swing.JLabel();
         authPasswordField = new javax.swing.JPasswordField();
@@ -112,6 +112,7 @@ public class AppWindow extends javax.swing.JFrame
         featuresUpdateButton = new javax.swing.JButton();
         featuresDeleteButton = new javax.swing.JButton();
         featuresScrollPane = new javax.swing.JScrollPane();
+        featuresProjectButton = new javax.swing.JButton();
 
         projectNameText.setText("Project Name");
 
@@ -321,51 +322,51 @@ public class AppWindow extends javax.swing.JFrame
         featuresDeleteDialog.setPreferredSize(new java.awt.Dimension(440, 400));
         featuresDeleteDialog.setSize(new java.awt.Dimension(440, 400));
 
-        projectDeleteDialogButton1.setText("Delete");
-        projectDeleteDialogButton1.addActionListener(new java.awt.event.ActionListener() {
+        featuresDeleteDialogButton.setText("Delete");
+        featuresDeleteDialogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectDeleteDialogButton1ActionPerformed(evt);
+                featuresDeleteDialogButtonActionPerformed(evt);
             }
         });
 
-        projectDeleteCancelDialogButton1.setText("Cancel");
-        projectDeleteCancelDialogButton1.addActionListener(new java.awt.event.ActionListener() {
+        featuresDeleteCancelDialogButton.setText("Cancel");
+        featuresDeleteCancelDialogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectDeleteCancelDialogButton1ActionPerformed(evt);
+                featuresDeleteCancelDialogButtonActionPerformed(evt);
             }
         });
 
-        projectDeleteJList1.setModel(new javax.swing.AbstractListModel<String>() {
+        featuresDeleteJList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        projectDeleteScrollpane1.setViewportView(projectDeleteJList1);
+        featuresDeleteScrollpane.setViewportView(featuresDeleteJList);
 
         javax.swing.GroupLayout featuresDeleteDialogLayout = new javax.swing.GroupLayout(featuresDeleteDialog.getContentPane());
         featuresDeleteDialog.getContentPane().setLayout(featuresDeleteDialogLayout);
         featuresDeleteDialogLayout.setHorizontalGroup(
             featuresDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, featuresDeleteDialogLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(featuresDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(projectDeleteScrollpane1)
+                    .addComponent(featuresDeleteScrollpane)
                     .addGroup(featuresDeleteDialogLayout.createSequentialGroup()
-                        .addComponent(projectDeleteDialogButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                        .addComponent(projectDeleteCancelDialogButton1)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addComponent(featuresDeleteDialogButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addComponent(featuresDeleteCancelDialogButton)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         featuresDeleteDialogLayout.setVerticalGroup(
             featuresDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, featuresDeleteDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(projectDeleteScrollpane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(featuresDeleteScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(featuresDeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projectDeleteDialogButton1)
-                    .addComponent(projectDeleteCancelDialogButton1))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(featuresDeleteDialogButton)
+                    .addComponent(featuresDeleteCancelDialogButton))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -639,27 +640,38 @@ public class AppWindow extends javax.swing.JFrame
             }
         });
 
+        featuresProjectButton.setText("Projects");
+        featuresProjectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                featuresProjectButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FeaturesPanelLayout = new javax.swing.GroupLayout(FeaturesPanel);
         FeaturesPanel.setLayout(FeaturesPanelLayout);
         FeaturesPanelLayout.setHorizontalGroup(
             FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(featuresProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(featuresDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(featuresUpdateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(featuresAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(featuresAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(featuresReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(featuresReportButton)
-                    .addComponent(featuresAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(featuresLogoutButton)
-                    .addComponent(featuresAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(featuresUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(featuresDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
-                        .addComponent(featuresRefreshButton)
-                        .addGap(115, 115, 115))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
-                        .addComponent(featuresScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(FeaturesPanelLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(featuresRefreshButton))
+                    .addGroup(FeaturesPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(featuresScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(FeaturesPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(featuresLogoutButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FeaturesPanelLayout.setVerticalGroup(
             FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -676,6 +688,8 @@ public class AppWindow extends javax.swing.JFrame
                         .addComponent(featuresUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(featuresDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(featuresProjectButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -835,6 +849,10 @@ public class AppWindow extends javax.swing.JFrame
 
     private void featuresDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresDeleteButtonActionPerformed
         // TODO add your handling code here:
+        featuresDeleteDialog.setSize(440,400);
+        featuresDeleteDialog.setLocationRelativeTo(null);
+        FeatureDeleteRefresh();
+        featuresDeleteDialog.setVisible(true);
     }//GEN-LAST:event_featuresDeleteButtonActionPerformed
 
     private void featuresAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresAddDialogButtonActionPerformed
@@ -857,13 +875,49 @@ public class AppWindow extends javax.swing.JFrame
         featuresNameText.setText("Features Name");
     }//GEN-LAST:event_featuresCancelDialogButtonActionPerformed
 
-    private void projectDeleteDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteDialogButton1ActionPerformed
+    private void featuresDeleteDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresDeleteDialogButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_projectDeleteDialogButton1ActionPerformed
+        int indexes[];
+        Vector names = new Vector(0,0);
+        Vector featuresIDs = new Vector(0,0);
+        String response;
+        String temp[];
+        
+        indexes = featuresDeleteJList.getSelectedIndices();
+        
+        response = Controller.features.getProjectFeatures(ProjectID);
+        
+        temp = response.split("\"");
+        
+        for (int i = 0 ; i < temp.length ; i++)
+        {
+            if(temp[i].matches("name"))
+            {
+                featuresIDs.addElement(new String(temp[i+6]));
+            }
+        }
+        
+        for(int i = 0; i < indexes.length; i++)
+        {
+            response = Controller.features.deleteFeature((String) featuresIDs.get(indexes[i]));
+            System.out.println(response);
+        }
+        
+        FeatureDeleteRefresh();
+    }//GEN-LAST:event_featuresDeleteDialogButtonActionPerformed
 
-    private void projectDeleteCancelDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteCancelDialogButton1ActionPerformed
+    private void featuresDeleteCancelDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresDeleteCancelDialogButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_projectDeleteCancelDialogButton1ActionPerformed
+        FeatureRefresh();
+        featuresDeleteDialog.setVisible(false);
+    }//GEN-LAST:event_featuresDeleteCancelDialogButtonActionPerformed
+
+    private void featuresProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresProjectButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectRefresh();
+        ProjectsPanel.setVisible(true);
+        FeaturesPanel.setVisible(false);
+    }//GEN-LAST:event_featuresProjectButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -932,7 +986,6 @@ public class AppWindow extends javax.swing.JFrame
             ProjectsPanel.setVisible(true);
 
             authLoginStatusLabel.setText("");
-
         } 
         
         else 
@@ -1031,8 +1084,8 @@ public class AppWindow extends javax.swing.JFrame
         
         projectScrollPane.add(buffer);
         projectScrollPane.setViewportView(buffer);
-
     }
+    
     private void FeatureRefresh() 
     {
         String response = Controller.features.getProjectFeatures(ProjectID);
@@ -1087,9 +1140,41 @@ public class AppWindow extends javax.swing.JFrame
         
         featuresScrollPane.add(buffer);
         featuresScrollPane.setViewportView(buffer);
-
     }
     
+    private void FeatureDeleteRefresh()
+    {
+        String response = Controller.features.getProjectFeatures(ProjectID);
+        
+        Vector names = new Vector(0,0);
+        
+        Vector featureIDs = new Vector(0,0);
+        
+        String temp[];
+        
+        response = response.replaceAll(":", "");
+        
+        temp = response.split("\"");
+        
+        for (int i = 0 ; i < temp.length ; i++)
+        { 
+            if(temp[i].matches("name"))
+            {
+                names.addElement(new String(temp[i+2]));
+            }
+            if(temp[i].matches("objectId"))
+            {
+                if(!temp[i+2].equals(ProjectID))
+                {
+                    featureIDs.addElement(new String(temp[i+2]));
+                }
+            }
+        }
+        
+        featuresDeleteJList = new JList(names);
+        featuresDeleteScrollpane.setViewportView(featuresDeleteJList); 
+    }
+
     private void ProjectDeleteRefresh()
     {
         String response;
@@ -1117,7 +1202,6 @@ public class AppWindow extends javax.swing.JFrame
         
         projectDeleteJList = new JList(names);
         projectDeleteScrollpane.setViewportView(projectDeleteJList);
-        
     }
 
 
@@ -1144,12 +1228,17 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JLabel featuresCommentsLabel;
     private javax.swing.JTextArea featuresCommentsText;
     private javax.swing.JButton featuresDeleteButton;
+    private javax.swing.JButton featuresDeleteCancelDialogButton;
     private javax.swing.JDialog featuresDeleteDialog;
+    private javax.swing.JButton featuresDeleteDialogButton;
+    private javax.swing.JList<String> featuresDeleteJList;
+    private javax.swing.JScrollPane featuresDeleteScrollpane;
     private javax.swing.JLabel featuresDescriptionLabel;
     private javax.swing.JTextArea featuresDescriptionText;
     private javax.swing.JButton featuresLogoutButton;
     private javax.swing.JLabel featuresNameLabel;
     private javax.swing.JTextField featuresNameText;
+    private javax.swing.JButton featuresProjectButton;
     private javax.swing.JButton featuresRefreshButton;
     private javax.swing.JButton featuresReportButton;
     private javax.swing.JScrollPane featuresScrollPane;
@@ -1167,14 +1256,10 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JTextArea projectCommentsText;
     private javax.swing.JButton projectDeleteButton;
     private javax.swing.JButton projectDeleteCancelDialogButton;
-    private javax.swing.JButton projectDeleteCancelDialogButton1;
     private javax.swing.JDialog projectDeleteDialog;
     private javax.swing.JButton projectDeleteDialogButton;
-    private javax.swing.JButton projectDeleteDialogButton1;
     private javax.swing.JList<String> projectDeleteJList;
-    private javax.swing.JList<String> projectDeleteJList1;
     private javax.swing.JScrollPane projectDeleteScrollpane;
-    private javax.swing.JScrollPane projectDeleteScrollpane1;
     private javax.swing.JLabel projectDescriptionLabel;
     private javax.swing.JTextArea projectDescriptionText;
     private javax.swing.JButton projectLogoutButton;
