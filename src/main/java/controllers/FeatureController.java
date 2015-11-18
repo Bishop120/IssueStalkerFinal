@@ -36,16 +36,13 @@ public class FeatureController
         
         return response;
     }
-    /*
-    public String deleteProject(String projectID)
+    
+    public String deleteFeature(String featureID)
     {
         String response;
         
-        response = projectModel.deleteProject(projectID);
+        response = featureModel.deleteFeature(featureID);
         
         return response;
     }
-    */
-    
-    
 }
