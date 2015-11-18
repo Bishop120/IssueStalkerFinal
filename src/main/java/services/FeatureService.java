@@ -64,25 +64,26 @@ public class FeatureService extends Service
         return response;
     }
         
-    public String postFeature(String description, String name, String comment)
+    public String postFeature(String name, String description, String comment, String ProjectID)
     {
         String response="";
         
         String feature = "";
-        feature = feature + "{\"description\":\"";
-        feature = feature + description;
-        feature = feature + "\",\"name\":\"";
+        feature = feature + "{\"name\":\"";
         feature = feature + name;
+        feature = feature + "\",\"description\":\"";
+        feature = feature + description;
         feature = feature + "\",\"comment\":\"";
         feature = feature + comment;
-        feature = feature + "\"}";
+        feature = feature + ",\"project\":{\"__type\": \"Pointer\",\"className\": \"Project\",\"objectId\": \"";
+        feature = feature + ProjectID;
+        feature = feature + "\"}}";
         
-        
-        //System.out.println(feature);
+        System.out.println(feature);
         
         try 
         {
-            response = super.post("Project",feature);
+            response = super.post("Milestone",feature);
         } 
         catch (Exception ex) 
         {
