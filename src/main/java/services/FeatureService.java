@@ -31,6 +31,23 @@ public class FeatureService extends Service
         return response;
     }
     
+    public String getProjectFeatures(String projectID)
+    {
+        String response ="";
+        
+        try
+        {
+            response = super.getProjectId(projectID);
+        } 
+        catch (Exception ex) 
+        {
+            Logger.getLogger(FeatureService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return response;
+    }
+    
     public String getFeature(String featureID)
     {
         String response="";
@@ -47,25 +64,26 @@ public class FeatureService extends Service
         return response;
     }
         
-    public String postFeature(String description, String name, String comment)
+    public String postFeature(String name, String description, String comment, String ProjectID)
     {
         String response="";
         
         String feature = "";
-        feature = feature + "{\"description\":\"";
-        feature = feature + description;
-        feature = feature + "\",\"name\":\"";
+        feature = feature + "{\"name\":\"";
         feature = feature + name;
+        feature = feature + "\",\"description\":\"";
+        feature = feature + description;
         feature = feature + "\",\"comment\":\"";
         feature = feature + comment;
-        feature = feature + "\"}";
+        feature = feature + "\",\"project\":{\"__type\": \"Pointer\",\"className\": \"Project\",\"objectId\": \"";
+        feature = feature + ProjectID;
+        feature = feature + "\"}}";
         
-        
-        //System.out.println(feature);
+        System.out.println(feature);
         
         try 
         {
-            response = super.post("Project",feature);
+            response = super.post("Milestone",feature);
         } 
         catch (Exception ex) 
         {
@@ -81,13 +99,13 @@ public class FeatureService extends Service
      * @return String 
      * @throws java.lang.Exception 
      */
-    public String deleteProject(String projectID)
+    public String deleteFeature(String featureID)
     {
         String response="";
         
         try 
         {
-            response = super.delete("Milestone",projectID);
+            response = super.delete("Milestone",featureID);
         } 
         catch (Exception ex) 
         {
