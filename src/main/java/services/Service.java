@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package services;
-import javax.ws.rs.core.MediaType;
+//import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.client.*;
 import org.json.simple.parser.*;
-import org.json.*;
+//import org.json.*;
+import java.net.URLEncoder;
 
 /**
  *
@@ -84,12 +85,11 @@ class Service
      */
     public String getProjectId(String objectId) throws Exception
     {
-        String query = "where={\"project\":{\"__type\":\"Pointer\",\"className\":\"Project\",\"objectId\":\"" + objectId + "\"}}";
-        String url = this.baseURl + "/classes/Milestone/"+query;
+        String query = "{\"project\":{\"__type\":\"Pointer\",\"className\":\"Project\",\"objectId\":\"" + objectId + "\"}}";
+        String url = this.baseURl + "/classes/Milestone/?where=" + URLEncoder.encode(query, "UTF-8");
         System.out.println("get: " + url);
         this.request = new ClientRequest(url);
         this.prepareRequest();
-        //this.request.queryParameter("project", query);
         this.response = request.get(String.class);
         return (String) this.response.getEntity();
     }
@@ -107,7 +107,7 @@ class Service
         System.out.println("post: " + url);
         this.request = new ClientRequest(url);
         this.prepareRequest();
-        this.request.body("text/plain",post);
+        this.request.body("application/x-www-form-urlencoded",URLEncoder.encode(post, "UTF-8"));
         this.response = request.post(String.class);
         return (String) this.response.getEntity();
     }

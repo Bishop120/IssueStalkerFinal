@@ -27,17 +27,17 @@ public class FeatureController
         
         return response;
     }
-    /*
-    public String addProject(String name, String description, String comment)
+    
+    public String addFeature(String name, String description, String comment, String ProjectID)
     {
         String response;
         
-        response = projectModel.postProject(name,description,comment);
+        response = featureModel.postFeature(name,description,comment,ProjectID);
         
         return response;
     }
-    
-        public String deleteProject(String projectID)
+    /*
+    public String deleteProject(String projectID)
     {
         String response;
         
