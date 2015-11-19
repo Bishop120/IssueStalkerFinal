@@ -4,15 +4,14 @@
  * and open the template in the editor.
  */
 package services;
-//import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.client.*;
-import org.json.simple.parser.*;
+//import org.json.simple.parser.*;
 import org.json.*;
 import java.net.URLEncoder;
 
 /**
  *
- * @author danger
+ * @author Michael Hedges and Thomas Coolidge
  */
 class Service 
 {
@@ -21,11 +20,11 @@ class Service
     private final String restApiKey = "0JJSBTESRk0Q1JNs0nwCpBGGLFZxQxkibOeoYe49";
     ClientRequest request;
     ClientResponse response;
-    private static String sessionToken;
-    private JSONParser parser;
+    public static String sessionToken;
+    //private JSONParser parser;
     
     /**
-     * Attach Given Headers
+     * Attach Given Headers with Session Token
      */
     void prepareRequest() 
     {
@@ -35,7 +34,7 @@ class Service
     }
     
     /**
-     * Attach Given Headers
+     * Attach Given Headers for Login
      */
     void prepareLogin() 
     {
@@ -131,7 +130,7 @@ class Service
     }
     
     /**
-     * Post to a given class
+     * Post an update to a given class
      * @param className
      * @param obejctID
      * @return 
@@ -139,24 +138,41 @@ class Service
      */
     public String update(String className, String objectID, String update) throws Exception
     {
+        JSONObject json = new JSONObject(update);
         String url = this.baseURl + "/classes/" + className + "/" + objectID;
         System.out.println("update: " + url);
         this.request = new ClientRequest(url);
         this.prepareRequest();
+        this.request.body("*/*",json);
         this.response = request.put(String.class);
         return (String) this.response.getEntity();
     }
     
+    /**
+     * Sets the sessionToken
+     * @param String token
+     * @return void 
+     */
     public void setToken(String token)
     {
         this.sessionToken = token;
     }
     
+    /**
+     * Sets the sessionToken to null
+     * @param null
+     * @return void 
+     */
     public void clearToken()
     {
         this.sessionToken=null;
     }
     
+    /**
+     * Returns the sessionToken
+     * @param null
+     * @return String sessionToken 
+     */
     public String getToken()
     {
         return this.sessionToken;
