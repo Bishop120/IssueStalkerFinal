@@ -969,14 +969,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="featuresProjectButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="featuresDeleteButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="featuresUpdateButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="featuresAddButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="featuresAdminButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="featuresReportButton" alignment="2" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="featuresProjectButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="featuresDeleteButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="featuresUpdateButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="featuresAddButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="featuresAdminButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="featuresReportButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="issuesFeaturesButton" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -1014,6 +1015,8 @@
                           <Component id="featuresDeleteButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="featuresProjectButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="issuesFeaturesButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -1113,6 +1116,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featuresProjectButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="issuesFeaturesButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Features"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="issuesFeaturesButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

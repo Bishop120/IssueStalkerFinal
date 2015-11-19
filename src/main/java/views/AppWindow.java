@@ -129,6 +129,7 @@ public class AppWindow extends javax.swing.JFrame
         featuresDeleteButton = new javax.swing.JButton();
         featuresScrollPane = new javax.swing.JScrollPane();
         featuresProjectButton = new javax.swing.JButton();
+        issuesFeaturesButton = new javax.swing.JButton();
         IssuesPanel = new javax.swing.JPanel();
         issuesAdminButton = new javax.swing.JButton();
         issuesLogoutButton = new javax.swing.JButton();
@@ -782,19 +783,27 @@ public class AppWindow extends javax.swing.JFrame
             }
         });
 
+        issuesFeaturesButton.setText("Features");
+        issuesFeaturesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issuesFeaturesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FeaturesPanelLayout = new javax.swing.GroupLayout(FeaturesPanel);
         FeaturesPanel.setLayout(FeaturesPanelLayout);
         FeaturesPanelLayout.setHorizontalGroup(
             FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(featuresProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(featuresDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(featuresUpdateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(featuresAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(featuresAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(featuresReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(featuresProjectButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(featuresDeleteButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(featuresUpdateButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(featuresAddButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(featuresAdminButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(featuresReportButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(issuesFeaturesButton))
                 .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FeaturesPanelLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
@@ -808,6 +817,9 @@ public class AppWindow extends javax.swing.JFrame
                 .addComponent(featuresLogoutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        FeaturesPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {featuresAddButton, featuresAdminButton, featuresDeleteButton, featuresProjectButton, featuresReportButton, featuresUpdateButton, issuesFeaturesButton});
+
         FeaturesPanelLayout.setVerticalGroup(
             FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FeaturesPanelLayout.createSequentialGroup()
@@ -825,6 +837,8 @@ public class AppWindow extends javax.swing.JFrame
                         .addComponent(featuresDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(featuresProjectButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(issuesFeaturesButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
                         .addContainerGap(11, Short.MAX_VALUE)
@@ -1034,26 +1048,44 @@ public class AppWindow extends javax.swing.JFrame
         int indexes[];
         Vector names = new Vector(0,0);
         Vector projectIDs = new Vector(0,0);
+        String featureID;
         String response;
-        String temp[];
+        String temp1[];
+        String temp2[];
         
         indexes = projectDeleteJList.getSelectedIndices();
         
         response = Controller.projects.getAllProject();
-       
-        response = response.replaceAll(":", "");
         
-        temp = response.split("\"");
+        temp1 = response.split("\"");
         
-        for (int i = 0 ; i < temp.length ; i++)
+        for (int i = 0 ; i < temp1.length ; i++)
         {
-            if(temp[i].matches("name"))
+            if(temp1[i].matches("name"))
             {
-                projectIDs.addElement(new String(temp[i+6]));
+                projectIDs.addElement(new String(temp1[i+6]));
             }
         }
+        /*
+        for(int i = 0; i < projectIDs.size(); i++)
+        {
+            response = Controller.features.getProjectFeatures((String) projectIDs.get(indexes[i]));
+            
+            temp2 = response.split("\"");
         
-        for(int i = 0; i < indexes.length; i++)
+            for (int j = 0 ; j < temp2.length ; j++)
+            {
+                if(temp2[j].matches("name"))
+                {
+                    featureID = temp2[j+6];
+                    response = Controller.features.deleteFeature(featureID);
+                    System.out.println(response);
+                }
+            }
+            
+        }
+        */
+        for(int i = 0; i < projectIDs.size(); i++)
         {
             response = Controller.projects.deleteProject((String) projectIDs.get(indexes[i]));
             System.out.println(response);
@@ -1226,6 +1258,13 @@ public class AppWindow extends javax.swing.JFrame
         IssueRefresh();
         issuesDeleteDialog.setVisible(false);
     }//GEN-LAST:event_issuesDeleteCancelDialogButtonActionPerformed
+
+    private void issuesFeaturesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesFeaturesButtonActionPerformed
+        // TODO add your handling code here:
+        FeatureRefresh();
+        FeaturesPanel.setVisible(true);
+        IssuesPanel.setVisible(false);
+    }//GEN-LAST:event_issuesFeaturesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1667,6 +1706,7 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JScrollPane issuesDeleteScrollpane;
     private javax.swing.JLabel issuesDescriptionLabel;
     private javax.swing.JTextArea issuesDescriptionText;
+    private javax.swing.JButton issuesFeaturesButton;
     private javax.swing.JButton issuesLogoutButton;
     private javax.swing.JLabel issuesNameLabel;
     private javax.swing.JTextField issuesNameText;
