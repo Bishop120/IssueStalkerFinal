@@ -17,8 +17,5 @@ public class ReportController
     public ReportController()
     {
         reportModel = new ReportService();
-    }
-    
-    
-    
+    }   
 }
