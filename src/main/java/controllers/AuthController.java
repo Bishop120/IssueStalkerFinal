@@ -15,18 +15,24 @@ import services.AuthService;
 public class AuthController 
 {
     public AuthService authModel;
-    public String sessionToken;
     
     public AuthController()
     {
         authModel = new AuthService();
     }
     
+    /**
+     * Logs in to the API with Username and Password
+     * @param username
+     * @param password
+     * @return Boolean
+     */
     public Boolean login(String username, String password)
     {
         Boolean valid = false;
         String response;
         String[] temp;
+        String sessionToken;
         
         try 
         {
@@ -35,52 +41,40 @@ public class AuthController
             {
                 temp=response.split("\"");
                 sessionToken=temp[11];
-                sessionToken.replaceAll("\"","");
-               valid = true; 
-            }
-            else
-            {
-                sessionToken="";
+                valid = true;
+                authModel.setToken(sessionToken);
             }
         } 
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
-            sessionToken="";
             valid = false;
         }
         
         return valid;
     }
     
+    /**
+     * Logout of the API and clear session tokens
+     * @return Boolean
+     */
     public Boolean logout()
     {
-        Boolean valid = false;
+        Boolean valid;
         String response;
         
         try 
         {
             response = authModel.logout();
-            System.out.println(response);
-            
-            if(response.contains("{}"))
-            {
-                
-                //sessionToken="";
-                valid = true; 
-            }
-            else
-            {
-                //sessionToken="";
-                valid=false;
-            }
         } 
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
             sessionToken="";
-            valid = false;
+            response = "Unknown Error";
         }
+        
+        valid = response.equals("{}");
         
         return valid;
     }

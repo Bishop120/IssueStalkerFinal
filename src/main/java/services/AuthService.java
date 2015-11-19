@@ -13,17 +13,27 @@ import org.jboss.resteasy.client.*;
  */
 public class AuthService extends Service
 {
-    
+    /**
+     * Logs in to the API with Username and Password
+     * @param username
+     * @param password
+     * @return String
+     * @throws java.lang.Exception 
+     */
     public String login(String username, String password) throws Exception
     {
         String url = this.baseURl + "/login/?username=" + username + "&password=" + password;
-        //System.out.println("get: " + url);
         super.request = new ClientRequest(url);
         super.prepareLogin();
         this.response = request.get(String.class);
         return (String) this.response.getEntity();
     }
     
+    /**
+     * Send a logout request to the API
+     * @return String
+     * @throws java.lang.Exception 
+     */
     public String logout() throws Exception
     {
         String url = this.baseURl + "/logout";
