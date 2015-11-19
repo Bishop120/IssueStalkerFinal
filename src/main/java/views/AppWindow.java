@@ -11,6 +11,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 
+
 import controllers.Controller;
 
 /**
@@ -978,8 +979,6 @@ public class AppWindow extends javax.swing.JFrame
 
         if (valid) 
         {
-            Controller.setToken();
-
             ProjectRefresh();
 
             AuthPanel.setVisible(false);
@@ -1005,7 +1004,6 @@ public class AppWindow extends javax.swing.JFrame
             authLoginStatusLabel.setText("Invalid Session Token");
         }
 
-        //Controller.clearToken();
         AuthPanel.setVisible(true);
     }
 

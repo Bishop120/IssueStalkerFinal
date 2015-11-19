@@ -14,16 +14,13 @@ import java.util.logging.Logger;
  */
 public class ProjectService extends Service
 {
-    
      /**
      * List all Project
-     * @param 
      * @return String 
-     * @throws java.lang.Exception 
      */
     public String getAll()
     {
-        String response="";
+        String response;
         
         try 
         {
@@ -32,16 +29,16 @@ public class ProjectService extends Service
         catch (Exception ex) 
         {
             Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            response = "Unknown Error";
         }
         
         return response;
     }
     
      /**
-     * List individual Project
-     * @param String projectID
+     * Get the details of an individual Project
+     * @param projectID
      * @return String 
-     * @throws java.lang.Exception 
      */
     public String getProject(String projectID)
     {
@@ -61,15 +58,14 @@ public class ProjectService extends Service
     
      /**
      * Post a Project
-     * @param String description
-     * @param String name
-     * @param String comment
+     * @param description
+     * @param name
+     * @param comment
      * @return String 
-     * @throws java.lang.Exception 
      */
     public String postProject(String name, String description, String comment)
     {
-        String response="";
+        String response;
         
         String project = "";
         project = project + "{\"description\":\"";
@@ -80,9 +76,6 @@ public class ProjectService extends Service
         project = project + comment;
         project = project + "\"}";
         
-        
-        System.out.println(project);
-        
         try 
         {
             response = super.post("Project",project);
@@ -90,6 +83,7 @@ public class ProjectService extends Service
         catch (Exception ex) 
         {
             Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            response = "Uknown Error";
         }
         
         return response;
@@ -97,13 +91,12 @@ public class ProjectService extends Service
     
      /**
      * Delete a Project
-     * @param String projectID
+     * @param projectID
      * @return String 
-     * @throws java.lang.Exception 
      */
     public String deleteProject(String projectID)
     {
-        String response="";
+        String response;
         
         try 
         {
@@ -112,20 +105,21 @@ public class ProjectService extends Service
         catch (Exception ex) 
         {
             Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            response = "Uknown Error";
         }
         
         return response;
     }
     
-     /**
-     * Delete a Project
-     * @param String projectID
+      /**
+     * Update the details of an individual Project
+     * @param  projectID
+     * @param  update
      * @return String 
-     * @throws java.lang.Exception 
      */
     public String updateProject(String projectID, String update)
     {
-        String response="";
+        String response;
         
         try 
         {
@@ -134,10 +128,9 @@ public class ProjectService extends Service
         catch (Exception ex) 
         {
             Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            response = "Unknown Error";
         }
         
         return response;
-    }
-    
-    
+    } 
 }
