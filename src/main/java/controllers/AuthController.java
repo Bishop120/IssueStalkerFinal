@@ -70,7 +70,6 @@ public class AuthController
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
-            sessionToken="";
             response = "Unknown Error";
         }
         

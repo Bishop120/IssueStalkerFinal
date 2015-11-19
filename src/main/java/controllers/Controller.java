@@ -18,30 +18,22 @@ public class Controller
     public AdminController admin;
     public ReportController reports;
     
-    /**
-     * Sets the token a
-     * @param username
-     * @param password
-     * @return String
-     * @throws java.lang.Exception 
-     */
-    public void setToken()
-    {
-        String token = auth.sessionToken;
-        
-        auth.authModel.setToken(token);
-    }
-    
     public void clearToken()
     {
-        String token = "";
-        
-        auth.authModel.setToken(token);
+        auth.authModel.setToken("");
     }
     
     public String getToken()
     {
-        return auth.sessionToken;
+        if(auth.authModel.sessionToken != null)
+        {
+            return auth.authModel.sessionToken;
+        }
+        
+        else
+        {
+            return null;
+        }
     }
     
     public Controller()
