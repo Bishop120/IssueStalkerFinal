@@ -38,7 +38,7 @@ public class AppWindow extends javax.swing.JFrame
         AdminPanel.setVisible(false);
         ProjectsPanel.setVisible(false);
         FeaturesPanel.setVisible(false);
-        IssuesPanel.setVisible(false);
+        DialogWarning.setVisible(false);
         ReportsPanel.setVisible(false);
     }
     
@@ -99,6 +99,9 @@ public class AppWindow extends javax.swing.JFrame
         issuesDeleteCancelDialogButton = new javax.swing.JButton();
         issuesDeleteScrollpane = new javax.swing.JScrollPane();
         issuesDeleteJList = new javax.swing.JList<>();
+        errorNotification = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         AuthPanel = new javax.swing.JPanel();
         authPasswordLabell = new javax.swing.JLabel();
         authPasswordField = new javax.swing.JPasswordField();
@@ -130,7 +133,7 @@ public class AppWindow extends javax.swing.JFrame
         featuresScrollPane = new javax.swing.JScrollPane();
         featuresProjectButton = new javax.swing.JButton();
         issuesFeaturesButton = new javax.swing.JButton();
-        IssuesPanel = new javax.swing.JPanel();
+        DialogWarning = new javax.swing.JPanel();
         issuesAdminButton = new javax.swing.JButton();
         issuesLogoutButton = new javax.swing.JButton();
         issueRefreshButton = new javax.swing.JButton();
@@ -519,6 +522,38 @@ public class AppWindow extends javax.swing.JFrame
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
+        jLabel1.setText("Please Make a Valid Entry");
+
+        jButton1.setText("Okay");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout errorNotificationLayout = new javax.swing.GroupLayout(errorNotification.getContentPane());
+        errorNotification.getContentPane().setLayout(errorNotificationLayout);
+        errorNotificationLayout.setHorizontalGroup(
+            errorNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorNotificationLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, errorNotificationLayout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
+        );
+        errorNotificationLayout.setVerticalGroup(
+            errorNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(errorNotificationLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Issue Tracker");
         setName("Issue Tracker Frame"); // NOI18N
@@ -852,8 +887,8 @@ public class AppWindow extends javax.swing.JFrame
 
         getContentPane().add(FeaturesPanel, "card3");
 
-        IssuesPanel.setMinimumSize(new java.awt.Dimension(500, 400));
-        IssuesPanel.setPreferredSize(new java.awt.Dimension(500, 400));
+        DialogWarning.setMinimumSize(new java.awt.Dimension(500, 400));
+        DialogWarning.setPreferredSize(new java.awt.Dimension(500, 400));
 
         issuesAdminButton.setText("Admininstration");
 
@@ -908,37 +943,37 @@ public class AppWindow extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout IssuesPanelLayout = new javax.swing.GroupLayout(IssuesPanel);
-        IssuesPanel.setLayout(IssuesPanelLayout);
-        IssuesPanelLayout.setHorizontalGroup(
-            IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IssuesPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout DialogWarningLayout = new javax.swing.GroupLayout(DialogWarning);
+        DialogWarning.setLayout(DialogWarningLayout);
+        DialogWarningLayout.setHorizontalGroup(
+            DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogWarningLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(issuesProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesUpdateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
-                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(IssuesPanelLayout.createSequentialGroup()
+                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogWarningLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addComponent(issueRefreshButton))
-                    .addGroup(IssuesPanelLayout.createSequentialGroup()
+                    .addGroup(DialogWarningLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(issuesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(IssuesPanelLayout.createSequentialGroup()
+            .addGroup(DialogWarningLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(issuesLogoutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        IssuesPanelLayout.setVerticalGroup(
-            IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(IssuesPanelLayout.createSequentialGroup()
-                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(IssuesPanelLayout.createSequentialGroup()
+        DialogWarningLayout.setVerticalGroup(
+            DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogWarningLayout.createSequentialGroup()
+                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogWarningLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(issuesReportButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -952,17 +987,17 @@ public class AppWindow extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(issuesProjectButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IssuesPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogWarningLayout.createSequentialGroup()
                         .addContainerGap(9, Short.MAX_VALUE)
                         .addComponent(issuesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
-                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(issuesLogoutButton)
                     .addComponent(issueRefreshButton))
                 .addContainerGap())
         );
 
-        getContentPane().add(IssuesPanel, "card3");
+        getContentPane().add(DialogWarning, "card3");
 
         pack();
         setLocationRelativeTo(null);
@@ -1020,6 +1055,17 @@ public class AppWindow extends javax.swing.JFrame
     private void projectAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectAddDialogButtonActionPerformed
         // TODO add your handling code here:
         String response;
+        String Name = projectNameText.getText();
+        String Description = projectDescriptionText.getText();
+        String Comments = projectCommentsText.getText();
+        if (Name.isEmpty()||Description.isEmpty()||Comments.isEmpty())
+        {
+            errorNotification.setSize(440,400);
+            errorNotification.setLocationRelativeTo(null);
+            errorNotification.setVisible(true);
+            return;
+        }
+        else
         response = Controller.projects.addProject(projectNameText.getText(), projectDescriptionText.getText(),projectCommentsText.getText());
         System.out.println(response);
         ProjectRefresh();
@@ -1137,6 +1183,17 @@ public class AppWindow extends javax.swing.JFrame
     private void featuresAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresAddDialogButtonActionPerformed
         // TODO add your handling code here:
         String response;
+        String Name = featuresNameText.getText();
+        String Description = featuresDescriptionText.getText();
+        String Comments = featuresCommentsText.getText();
+        if (Name.isEmpty()||Description.isEmpty()||Comments.isEmpty())
+        {
+            errorNotification.setSize(440,400);
+            errorNotification.setLocationRelativeTo(null);
+            errorNotification.setVisible(true);
+            return;
+        }
+        else
         response = Controller.features.addFeature(featuresNameText.getText(), featuresDescriptionText.getText(),featuresCommentsText.getText(), ProjectID);
         System.out.println(response);
         FeatureRefresh();
@@ -1234,11 +1291,12 @@ public class AppWindow extends javax.swing.JFrame
         // TODO add your handling code here:
         ProjectRefresh();
         ProjectsPanel.setVisible(true);
-        IssuesPanel.setVisible(false);
+        DialogWarning.setVisible(false);
     }//GEN-LAST:event_issuesProjectButtonActionPerformed
 
     private void issuesAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesAddDialogButtonActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_issuesAddDialogButtonActionPerformed
 
     private void issuesCancelDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesCancelDialogButtonActionPerformed
@@ -1263,8 +1321,14 @@ public class AppWindow extends javax.swing.JFrame
         // TODO add your handling code here:
         FeatureRefresh();
         FeaturesPanel.setVisible(true);
-        IssuesPanel.setVisible(false);
+        DialogWarning.setVisible(false);
     }//GEN-LAST:event_issuesFeaturesButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        errorNotification.setVisible(false);
+        return;
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1481,7 +1545,7 @@ public class AppWindow extends javax.swing.JFrame
                     String response;
                     FeatureID = (String)featureIDs.get(x);
                     IssueRefresh();
-                    IssuesPanel.setVisible(true);
+                    DialogWarning.setVisible(true);
                     FeaturesPanel.setVisible(false);
                 }
             });
@@ -1655,8 +1719,8 @@ public class AppWindow extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminPanel;
     private javax.swing.JPanel AuthPanel;
+    private javax.swing.JPanel DialogWarning;
     private javax.swing.JPanel FeaturesPanel;
-    private javax.swing.JPanel IssuesPanel;
     private javax.swing.JPanel ProjectsPanel;
     private javax.swing.JPanel ReportsPanel;
     private javax.swing.JButton authCancelButton;
@@ -1667,6 +1731,7 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JButton authSubmitButton;
     private javax.swing.JTextField authUsernameField;
     private javax.swing.JLabel authUsernameLabel;
+    private javax.swing.JDialog errorNotification;
     private javax.swing.JButton featuresAddButton;
     private javax.swing.JDialog featuresAddDialog;
     private javax.swing.JButton featuresAddDialogButton;
@@ -1714,6 +1779,8 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JButton issuesReportButton;
     private javax.swing.JScrollPane issuesScrollPane;
     private javax.swing.JButton issuesUpdateButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
