@@ -114,7 +114,7 @@ public class IssueService extends Service
         return response;
     }
     
-<<<<<<< HEAD
+
         public String postIssue(String FeatureId, String name, String description, Integer priority, Integer difficulty, String comment){
             String response="";
 
@@ -188,50 +188,4 @@ public class IssueService extends Service
 
             return response;
         }
-=======
-     /**
-     * Delete a Issue from the API
-     * @param String projectID
-     * @return String 
-     * @throws java.lang.Exception 
-     */
-    public String deleteIssue(String issueID)
-    {
-        String response="";
-        
-        try 
-        {
-            response = super.delete("Issue",issueID);
-        } 
-        catch (Exception ex) 
-        {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return response;
-    }
->>>>>>> origin/Thomas's-Branch
-    
-     /**
-     * Update the details of an individual Issue
-     * @param  issueID
-     * @param  update
-     * @return String  
-     */
-    public String updateIssue(String issueID, String update)
-    {
-        String response;
-        
-        try 
-        {
-            response = super.update("Issue",issueID,update);
-        } 
-        catch (Exception ex) 
-        {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
-            response = "Unknown Error";
-        }
-        
-        return response;
-    }
 }
