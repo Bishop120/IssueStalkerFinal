@@ -19,6 +19,33 @@ public class IssueController
         issueModel = new IssueService();
     }
     
+    public String getFeatureIssues(String featureID)
+    {
+        String response;
+        
+        response = issueModel.getFeatureIssues(featureID);
+        
+        return response;
+    }
+    
+    public String addIssue(String name, String description, String comment, String FeatureID)
+    {
+        String response;
+        
+        response = issueModel.postIssue(name,description,comment,FeatureID);
+        
+        return response;
+    }
+    
+    public String deleteFeature(String issueID)
+    {
+        String response;
+        
+        response = issueModel.deleteIssue(issueID);
+        
+        return response;
+    }
+    
     
     
 }

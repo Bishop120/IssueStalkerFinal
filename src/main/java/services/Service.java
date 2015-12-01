@@ -93,6 +93,24 @@ class Service
         return (String) this.response.getEntity();
     }
     
+    /**
+     * GET all Milestones with a given projectID
+     * @param className
+     * @param objectId
+     * @return 
+     * @throws java.lang.Exception 
+     */
+    public String getFeatureId(String objectId) throws Exception
+    {
+        String query = "{\"milestone\":{\"__type\":\"Pointer\",\"className\":\"Milestone\",\"objectId\":\"" + objectId + "\"}}";
+        String url = this.baseURl + "/classes/Issue/?where=" + URLEncoder.encode(query, "UTF-8");
+        System.out.println("get: " + url);
+        this.request = new ClientRequest(url);
+        this.prepareRequest();
+        this.response = request.get(String.class);
+        return (String) this.response.getEntity();
+    }
+    
      /**
      * Post to a given class
      * @param className
