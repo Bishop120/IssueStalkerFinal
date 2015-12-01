@@ -14,7 +14,10 @@ import java.util.logging.Logger;
  */
 public class AdminService extends Service
 {
-    
+    /**
+     * Returns a list of all projects in database, logs errors
+     * @return String  
+     */
     public String getAll()
     {
         String response="";
@@ -30,7 +33,11 @@ public class AdminService extends Service
         
         return response;
     }
-    
+    /**
+     * Gets a given project
+     * @param  projectID
+     * @return String  
+     */
         public String getProject(String projectID)
     {
         String response="";
