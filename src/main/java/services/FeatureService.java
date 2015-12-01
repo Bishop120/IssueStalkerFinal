@@ -147,7 +147,7 @@ public class FeatureService extends Service
      * @param  update
      * @return String  
      */
-    public String updateProject(String featureID, String update)
+    public String updateFeature(String featureID, String update)
     {
         String response;
         
