@@ -44,7 +44,5 @@ public class ProjectController
         response = projectModel.deleteProject(projectID);
         
         return response;
-    }
-    
-    
+    }  
 }
