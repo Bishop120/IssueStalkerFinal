@@ -18,19 +18,10 @@ public class Controller
     public AdminController admin;
     public ReportController reports;
     
-    /**
-     * Clears the authentication token
-     */
-    
     public void clearToken()
     {
         auth.authModel.setToken("");
     }
-    
-    /**
-     * Returns the session authentication token
-     * @return String
-     */
     
     public String getToken()
     {
@@ -44,10 +35,6 @@ public class Controller
             return null;
         }
     }
-    
-    /**
-     * Allocates and initializes the controllers
-     */
     
     public Controller()
     {

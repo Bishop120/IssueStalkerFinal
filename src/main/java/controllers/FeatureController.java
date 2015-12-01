@@ -19,11 +19,6 @@ public class FeatureController
         featureModel = new FeatureService();
     }
     
-    /**
-     * Returns all the features for a given project
-     * @param projectID
-     * @return String
-     */
     public String getProjectFeatures(String projectID)
     {
         String response;
@@ -33,14 +28,6 @@ public class FeatureController
         return response;
     }
     
-    /**
-     * Adds a feature to a project
-     * @param name
-     * @param description
-     * @param comment
-     * @param ProjectID
-     * @return String
-     */
     public String addFeature(String name, String description, String comment, String ProjectID)
     {
         String response;
@@ -50,11 +37,6 @@ public class FeatureController
         return response;
     }
     
-    /**
-     * Removes a feature from a project
-     * @param featureID
-     * @return String
-     */
     public String deleteFeature(String featureID)
     {
         String response;

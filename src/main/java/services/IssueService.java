@@ -14,10 +14,7 @@ import java.util.logging.Logger;
  */
 public class IssueService extends Service
 {
-    /**
-     * Get all Issues listed in the API
-     * @return String  
-     */
+    
     public String getAll()
     {
         String response="";
@@ -117,17 +114,7 @@ public class IssueService extends Service
         return response;
     }
     
-        /**
-     * Post an Issue to the API
-     * @param  FeatureID
-     * @param  name
-     * @param  description
-     * @param  priority
-     * @param  difficulty
-     * @param  comment
-     * @return String  
-     * @throws java.lang.Exception 
-     */
+
         public String postIssue(String FeatureId, String name, String description, Integer priority, Integer difficulty, String comment){
             String response="";
 
@@ -158,7 +145,7 @@ public class IssueService extends Service
         
         /**
         * Delete a Feature from the API
-        * @param issueID
+        * @param String projectID
         * @return String 
         * @throws java.lang.Exception 
         */

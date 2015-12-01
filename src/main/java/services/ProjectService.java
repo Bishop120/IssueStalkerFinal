@@ -120,7 +120,6 @@ public class ProjectService extends Service
     public String updateProject(String projectID, String update)
     {
         String response;
-        System.out.println(update);
         
         try 
         {

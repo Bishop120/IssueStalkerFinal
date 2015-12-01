@@ -62,18 +62,6 @@ public class AppWindow extends javax.swing.JFrame
         projectCommentsText = new javax.swing.JTextArea();
         projectAddDialogButton = new javax.swing.JButton();
         projectCancelDialogButton = new javax.swing.JButton();
-        projectUpdate = new javax.swing.JDialog();
-        projectUpdateName = new javax.swing.JTextField();
-        projectNameLabel1 = new javax.swing.JLabel();
-        projectUpdateDescriptionlabel = new javax.swing.JLabel();
-        projectCommentsLabel1 = new javax.swing.JLabel();
-        projectUpdateDescriptionScrollpane = new javax.swing.JScrollPane();
-        projectUpdateDescription = new javax.swing.JTextArea();
-        projectUpdateCommentScrollpane = new javax.swing.JScrollPane();
-        projectUpdateComment = new javax.swing.JTextArea();
-        projectAddDialogButton1 = new javax.swing.JButton();
-        projectCancelDialogButton1 = new javax.swing.JButton();
-        projectUpdateProjectID = new javax.swing.JLabel();
         projectDeleteDialog = new javax.swing.JDialog();
         projectDeleteDialogButton = new javax.swing.JButton();
         projectDeleteCancelDialogButton = new javax.swing.JButton();
@@ -114,8 +102,6 @@ public class AppWindow extends javax.swing.JFrame
         errorNotification = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        projectUpdateDialog = new javax.swing.JDialog();
-        projectUpdateScrollpane = new javax.swing.JScrollPane();
         AuthPanel = new javax.swing.JPanel();
         authPasswordLabell = new javax.swing.JLabel();
         authPasswordField = new javax.swing.JPasswordField();
@@ -234,88 +220,6 @@ public class AppWindow extends javax.swing.JFrame
                 .addGroup(projectAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projectAddDialogButton)
                     .addComponent(projectCancelDialogButton))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-
-        projectUpdateName.setText("Project Name");
-
-        projectNameLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        projectNameLabel1.setText("Project Name");
-
-        projectUpdateDescriptionlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        projectUpdateDescriptionlabel.setText("Project Description");
-
-        projectCommentsLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        projectCommentsLabel1.setText("Project Comments");
-
-        projectUpdateDescription.setColumns(20);
-        projectUpdateDescription.setRows(5);
-        projectUpdateDescriptionScrollpane.setViewportView(projectUpdateDescription);
-
-        projectUpdateComment.setColumns(20);
-        projectUpdateComment.setRows(5);
-        projectUpdateCommentScrollpane.setViewportView(projectUpdateComment);
-
-        projectAddDialogButton1.setText("Update");
-        projectAddDialogButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectAddDialogButton1ActionPerformed(evt);
-            }
-        });
-
-        projectCancelDialogButton1.setText("Cancel");
-        projectCancelDialogButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectCancelDialogButton1ActionPerformed(evt);
-            }
-        });
-
-        projectUpdateProjectID.setText(";");
-
-        javax.swing.GroupLayout projectUpdateLayout = new javax.swing.GroupLayout(projectUpdate.getContentPane());
-        projectUpdate.getContentPane().setLayout(projectUpdateLayout);
-        projectUpdateLayout.setHorizontalGroup(
-            projectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(projectUpdateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(projectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(projectUpdateDescriptionScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectUpdateCommentScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectUpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projectNameLabel1)
-                    .addComponent(projectUpdateDescriptionlabel)
-                    .addComponent(projectCommentsLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(projectUpdateProjectID)
-                .addGap(36, 36, 36))
-            .addGroup(projectUpdateLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(projectAddDialogButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                .addComponent(projectCancelDialogButton1)
-                .addGap(57, 57, 57))
-        );
-        projectUpdateLayout.setVerticalGroup(
-            projectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(projectUpdateLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(projectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projectNameLabel1)
-                    .addComponent(projectUpdateProjectID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(projectUpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(projectUpdateDescriptionlabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(projectUpdateDescriptionScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(projectCommentsLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(projectUpdateCommentScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(projectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(projectAddDialogButton1)
-                    .addComponent(projectCancelDialogButton1))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -650,19 +554,6 @@ public class AppWindow extends javax.swing.JFrame
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout projectUpdateDialogLayout = new javax.swing.GroupLayout(projectUpdateDialog.getContentPane());
-        projectUpdateDialog.getContentPane().setLayout(projectUpdateDialogLayout);
-        projectUpdateDialogLayout.setHorizontalGroup(
-            projectUpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(projectUpdateScrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-        );
-        projectUpdateDialogLayout.setVerticalGroup(
-            projectUpdateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(projectUpdateDialogLayout.createSequentialGroup()
-                .addComponent(projectUpdateScrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Issue Tracker");
         setName("Issue Tracker Frame"); // NOI18N
@@ -782,11 +673,6 @@ public class AppWindow extends javax.swing.JFrame
         projectUpdateButton.setText("Update Project");
         projectUpdateButton.setMaximumSize(new java.awt.Dimension(146, 29));
         projectUpdateButton.setMinimumSize(new java.awt.Dimension(146, 29));
-        projectUpdateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectUpdateButtonActionPerformed(evt);
-            }
-        });
 
         projectDeleteButton.setText("Delete Project");
         projectDeleteButton.setMaximumSize(new java.awt.Dimension(146, 29));
@@ -810,7 +696,7 @@ public class AppWindow extends javax.swing.JFrame
                     .addComponent(projectAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projectDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(ProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProjectsPanelLayout.createSequentialGroup()
                         .addComponent(projectRefreshButton)
@@ -1005,11 +891,6 @@ public class AppWindow extends javax.swing.JFrame
         DialogWarning.setPreferredSize(new java.awt.Dimension(500, 400));
 
         issuesAdminButton.setText("Admininstration");
-        issuesAdminButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                issuesAdminButtonActionPerformed(evt);
-            }
-        });
 
         issuesLogoutButton.setText("Logout");
         issuesLogoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1141,7 +1022,7 @@ public class AppWindow extends javax.swing.JFrame
         ProjectsPanel.setVisible(false);
         Logout();
     }//GEN-LAST:event_projectLogoutButtonActionPerformed
-    
+
     private void projectReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectReportButtonActionPerformed
         // TODO add your handling code here:
         ProjectsPanel.setVisible(false);
@@ -1448,149 +1329,6 @@ public class AppWindow extends javax.swing.JFrame
         errorNotification.setVisible(false);
         return;
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void issuesAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesAdminButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_issuesAdminButtonActionPerformed
-
-    private void projectUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectUpdateButtonActionPerformed
-        projectUpdateDialog.setSize(440,400);
-        projectUpdateDialog.setLocationRelativeTo(null);
-        projectUpdateDialog.setVisible(true);
-        String response = Controller.projects.getAllProject();
-        
-        Vector names = new Vector(0,0);
-        final Vector projectIDs = new Vector(0,0);
-        Vector descriptions = new Vector(0,0);
-        Vector comments = new Vector(0,0);
-
-        String temp[];
-       
-        response = response.replaceAll(":", "");
-        
-        temp = response.split("\"");
-        
-        for (int i = 0 ; i < temp.length ; i++)
-        {
-            if(temp[i].matches("name"))
-            {
-                names.addElement(new String(temp[i+2]));
-            }
-            if(temp[i].matches("comment"))
-            {
-                comments.addElement(new String(temp[i+2]));
-            }
-            if(temp[i].matches("description"))
-            {
-                descriptions.addElement(new String(temp[i+2]));
-            }
-            if(temp[i].matches("objectId"))
-            {
-                projectIDs.addElement(new String(temp[i+2]));
-            }
-        }
-        
-        JPanel buffer; //only 1, please
-        
-//create stuff to put in the scroll pane
-        buffer = new JPanel(new GridLayout(0, 1, 0, 4));
-
-        for (int i = 0; i < names.size() ; i++) 
-        {
-            JPanel subbuffer = new JPanel(new GridLayout(3, 1)); //lots of these
-
-            final int x = i;
-            JButton projectbutton = new JButton((String)names.get(x));
-            
-            projectbutton.addActionListener(new java.awt.event.ActionListener() 
-            {
-            public void actionPerformed(java.awt.event.ActionEvent evt) 
-            {
-                projectUpdateDialog.setVisible(false);
-                ProjectID = (String)projectIDs.get(x);
-                String response = Controller.projects.getProject(ProjectID);
-                String temp[];
-                String name= "";
-                String comment= "";
-                String description = "";
-                
-                response = response.replaceAll(":", "");
-                String fill;
-                temp = response.split("\"");
-                 for (int i = 0 ; i < response.length() ; i++)
-                    {
-                     if(temp[i].matches("name"))
-                        {
-                        name = temp[i+2];
-                        System.out.println(name);
-                        break;
-                        }
-                        if(temp[i].matches("comment"))
-                        {
-                            comment = temp[i+2];
-                        }
-                        if(temp[i].matches("description"))
-                        {
-                            description = temp[i+2];
-                            
-                        }
-                        
-                       }
-                
-            projectUpdate.setSize(440,400);
-            projectUpdate.setLocationRelativeTo(null);
-            projectUpdateName.setText(name);
-            projectUpdateComment.setText(comment);
-            projectUpdateDescription.setText(description);
-            projectUpdateProjectID.setText(ProjectID);
-            projectUpdateProjectID.hide();
-            projectUpdate.setVisible(true);
-            }
-            });
-
-            JLabel text0 = new JLabel((String)descriptions.get(i));
-
-            JLabel text1 = new JLabel((String)comments.get(i));
-
-            subbuffer.add(projectbutton);
-
-            subbuffer.add(text0);
-
-            subbuffer.add(text1);
-            
-            buffer.add(subbuffer);
-
-        }
-        
-        projectUpdateScrollpane.add(buffer);
-        projectUpdateScrollpane.setViewportView(buffer);
-    }//GEN-LAST:event_projectUpdateButtonActionPerformed
-
-    private void projectAddDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectAddDialogButton1ActionPerformed
-     String response;
-        String Name = projectUpdateName.getText();
-        String Description = projectUpdateDescription.getText();
-        String Comments = projectUpdateComment.getText();
-        if (Name.isEmpty()||Description.isEmpty()||Comments.isEmpty())
-        {
-            errorNotification.setSize(440,400);
-            errorNotification.setLocationRelativeTo(null);
-            errorNotification.setVisible(true);
-            return;
-        }
-        else
-        response = Controller.projects.updateProject(projectUpdateName.getText(), projectUpdateDescription.getText(),projectUpdateComment.getText(), projectUpdateProjectID.getText());
-        
-        projectUpdate.setVisible(false);
-        projectCommentsText.setText(Comments);
-        projectDescriptionText.setText(Description);
-        projectNameText.setText("Name");
-        ProjectRefresh();
-    }//GEN-LAST:event_projectAddDialogButton1ActionPerformed
-
-    private void projectCancelDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectCancelDialogButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_projectCancelDialogButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2052,12 +1790,9 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JButton projectAddButton;
     private javax.swing.JDialog projectAddDialog;
     private javax.swing.JButton projectAddDialogButton;
-    private javax.swing.JButton projectAddDialogButton1;
     private javax.swing.JButton projectAdminButton;
     private javax.swing.JButton projectCancelDialogButton;
-    private javax.swing.JButton projectCancelDialogButton1;
     private javax.swing.JLabel projectCommentsLabel;
-    private javax.swing.JLabel projectCommentsLabel1;
     private javax.swing.JTextArea projectCommentsText;
     private javax.swing.JButton projectDeleteButton;
     private javax.swing.JButton projectDeleteCancelDialogButton;
@@ -2069,21 +1804,10 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JTextArea projectDescriptionText;
     private javax.swing.JButton projectLogoutButton;
     private javax.swing.JLabel projectNameLabel;
-    private javax.swing.JLabel projectNameLabel1;
     private javax.swing.JTextField projectNameText;
     private javax.swing.JButton projectRefreshButton;
     private javax.swing.JButton projectReportButton;
     private javax.swing.JScrollPane projectScrollPane;
-    private javax.swing.JDialog projectUpdate;
     private javax.swing.JButton projectUpdateButton;
-    private javax.swing.JTextArea projectUpdateComment;
-    private javax.swing.JScrollPane projectUpdateCommentScrollpane;
-    private javax.swing.JTextArea projectUpdateDescription;
-    private javax.swing.JScrollPane projectUpdateDescriptionScrollpane;
-    private javax.swing.JLabel projectUpdateDescriptionlabel;
-    private javax.swing.JDialog projectUpdateDialog;
-    private javax.swing.JTextField projectUpdateName;
-    private javax.swing.JLabel projectUpdateProjectID;
-    private javax.swing.JScrollPane projectUpdateScrollpane;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,15 +28,6 @@ public class ProjectController
         return response;
     }
     
-    public String getProject(String ProjectId)
-    {
-        String response;
-        
-        response = projectModel.getProject(ProjectId);
-        
-        return response;
-    }
-    
     public String addProject(String name, String description, String comment)
     {
         String response;
@@ -45,21 +36,7 @@ public class ProjectController
         
         return response;
     }
-    public String updateProject(String name, String description, String comment, String ProjectID){
-        String response;
-        
-        String update = "";
-        update = update + "{\"description\":\"";
-        update = update + description;
-        update = update + "\",\"name\":\"";
-        update = update + name;
-        update = update + "\",\"comment\":\"";
-        update = update + comment;
-        update = update + "\"}";
-        response = projectModel.updateProject(ProjectID, update);
-        
-        return response;
-    }
+    
         public String deleteProject(String projectID)
     {
         String response;
