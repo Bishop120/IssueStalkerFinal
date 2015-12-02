@@ -1781,10 +1781,15 @@ public class AppWindow extends javax.swing.JFrame
             {
                 descriptions.addElement(new String(temp[i+2]));
             }
-            if(temp[i].matches("objectId"))
+            
+           
+            if(temp[i].matches("objectId") && i%19 == 0)
             {
                 featureIDs.addElement(new String(temp[i+2]));
+                System.out.println(i);
+                
             }
+            
         }
         
         JPanel buffer; //only 1, please
@@ -1801,13 +1806,14 @@ public class AppWindow extends javax.swing.JFrame
             
             featurebutton.addActionListener(new java.awt.event.ActionListener() 
             {
+            
             public void actionPerformed(java.awt.event.ActionEvent evt) 
             {
                 featureUpdateDialog.setVisible(false);
                 FeatureID = (String)featureIDs.get(x);
                 System.out.println(FeatureID);
                 System.out.println(ProjectID);
-                String response = Controller.features.getProjectFeatures(ProjectID);
+                String response = Controller.features.getFeature(FeatureID);
                 String temp[];
                 String name= "";
                 String comment= "";

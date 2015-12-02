@@ -84,4 +84,12 @@ public class FeatureController
         return response;
     }
        
+    public String getFeature(String FeatureId)
+    {
+        String response;
+        
+        response = featureModel.getFeature(FeatureId);
+        
+        return response;
+    }
 }
