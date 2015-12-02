@@ -479,13 +479,13 @@ public class AppWindow extends javax.swing.JFrame
         });
 
         featureNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        featureNameLabel.setText("Project Name");
+        featureNameLabel.setText("Feature Name");
 
         featureUpdateDescriptionlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        featureUpdateDescriptionlabel.setText("Project Description");
+        featureUpdateDescriptionlabel.setText("Feature Description");
 
         featureCommentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        featureCommentsLabel.setText("Project Comments");
+        featureCommentsLabel.setText("Feature Comments");
 
         featureUpdateDescription.setColumns(20);
         featureUpdateDescription.setRows(5);
