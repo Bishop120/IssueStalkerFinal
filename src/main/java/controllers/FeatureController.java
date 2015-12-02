@@ -63,4 +63,25 @@ public class FeatureController
         
         return response;
     }
+    
+    public String updateFeature(String name, String description, String comment, String ProjectID, String FeatureID){
+        String response;
+       
+        
+        String feature = "";
+        feature = feature + "{\"name\":\"";
+        feature = feature + name;
+        feature = feature + "\",\"description\":\"";
+        feature = feature + description;
+        feature = feature + "\",\"comment\":\"";
+        feature = feature + comment;
+        feature = feature + "\",\"project\":{\"__type\": \"Pointer\",\"className\": \"Project\",\"objectId\": \"";
+        feature = feature + ProjectID;
+        feature = feature + "\"}}";
+        
+        response = featureModel.updateFeature(FeatureID, feature);
+        
+        return response;
+    }
+       
 }

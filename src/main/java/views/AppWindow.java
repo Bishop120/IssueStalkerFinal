@@ -1029,6 +1029,11 @@ public class AppWindow extends javax.swing.JFrame
         featuresUpdateButton.setText("Update Feature");
         featuresUpdateButton.setMaximumSize(new java.awt.Dimension(146, 29));
         featuresUpdateButton.setMinimumSize(new java.awt.Dimension(146, 29));
+        featuresUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                featuresUpdateButtonActionPerformed(evt);
+            }
+        });
 
         featuresDeleteButton.setText("Delete Feature");
         featuresDeleteButton.setMaximumSize(new java.awt.Dimension(146, 29));
@@ -1104,7 +1109,7 @@ public class AppWindow extends javax.swing.JFrame
                         .addComponent(issuesFeaturesButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FeaturesPanelLayout.createSequentialGroup()
-                        .addContainerGap(11, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(featuresScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
                 .addGroup(FeaturesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1712,7 +1717,25 @@ public class AppWindow extends javax.swing.JFrame
     }//GEN-LAST:event_projectCancelDialogButton1ActionPerformed
 
     private void featureAddDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureAddDialogButton1ActionPerformed
-        // TODO add your handling code here:
+        String response;
+        String Name = featureUpdateName.getText();
+        String Description = featureUpdateDescription.getText();
+        String Comments = featureUpdateComment.getText();
+        if (Name.isEmpty()||Description.isEmpty()||Comments.isEmpty())
+        {
+            errorNotification.setSize(440,400);
+            errorNotification.setLocationRelativeTo(null);
+            errorNotification.setVisible(true);
+            return;
+        }
+        else
+        response = Controller.features.updateFeature(featureUpdateName.getText(), featureUpdateDescription.getText(),featureUpdateComment.getText(), ProjectID, FeatureID);
+        System.out.println(response);
+        FeatureRefresh();
+        featureUpdate.setVisible(false);
+        featureUpdateComment.setText(Name);
+        projectUpdateDescription.setText(Description);
+        projectNameText.setText(Name);        // TODO add your handling code here:
     }//GEN-LAST:event_featureAddDialogButton1ActionPerformed
 
     private void featureCancelDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureCancelDialogButton1ActionPerformed
@@ -1724,13 +1747,17 @@ public class AppWindow extends javax.swing.JFrame
     }//GEN-LAST:event_featureUpdateNameActionPerformed
 
     private void issuesUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesUpdateButtonActionPerformed
+        
+    }//GEN-LAST:event_issuesUpdateButtonActionPerformed
+
+    private void featuresUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featuresUpdateButtonActionPerformed
         featureUpdateDialog.setSize(440,400);
-        projectUpdateDialog.setLocationRelativeTo(null);
-        projectUpdateDialog.setVisible(true);
-        String response = Controller.projects.getAllProject();
+        featureUpdateDialog.setLocationRelativeTo(null);
+        featureUpdateDialog.setVisible(true);
+        String response = Controller.features.getProjectFeatures(ProjectID);
         
         Vector names = new Vector(0,0);
-        final Vector projectIDs = new Vector(0,0);
+        final Vector featureIDs = new Vector(0,0);
         Vector descriptions = new Vector(0,0);
         Vector comments = new Vector(0,0);
 
@@ -1756,7 +1783,7 @@ public class AppWindow extends javax.swing.JFrame
             }
             if(temp[i].matches("objectId"))
             {
-                projectIDs.addElement(new String(temp[i+2]));
+                featureIDs.addElement(new String(temp[i+2]));
             }
         }
         
@@ -1770,51 +1797,66 @@ public class AppWindow extends javax.swing.JFrame
             JPanel subbuffer = new JPanel(new GridLayout(3, 1)); //lots of these
 
             final int x = i;
-            JButton projectbutton = new JButton((String)names.get(x));
+            JButton featurebutton = new JButton((String)names.get(x));
             
-            projectbutton.addActionListener(new java.awt.event.ActionListener() 
+            featurebutton.addActionListener(new java.awt.event.ActionListener() 
             {
             public void actionPerformed(java.awt.event.ActionEvent evt) 
             {
-                projectUpdateDialog.setVisible(false);
-                ProjectID = (String)projectIDs.get(x);
-                String response = Controller.projects.getProject(ProjectID);
+                featureUpdateDialog.setVisible(false);
+                FeatureID = (String)featureIDs.get(x);
+                System.out.println(FeatureID);
+                System.out.println(ProjectID);
+                String response = Controller.features.getProjectFeatures(ProjectID);
                 String temp[];
                 String name= "";
                 String comment= "";
                 String description = "";
                 
-                response = response.replaceAll(":", "");
-                String fill;
+                
+               
                 temp = response.split("\"");
-                 for (int i = 0 ; i < response.length() ; i++)
+                
+               
+               
+                 for (int i = 0 ; i < temp.length ; i++)
                     {
+                        System.out.println(temp[i]);
                      if(temp[i].matches("name"))
                         {
                         name = temp[i+2];
                         System.out.println(name);
-                        break;
+                       
                         }
                         if(temp[i].matches("comment"))
                         {
                             comment = temp[i+2];
+                            
                         }
                         if(temp[i].matches("description"))
                         {
                             description = temp[i+2];
                             
+                            
                         }
-                        
+                        if(temp[i].matches("objectId"))
+                        {
+                            if(!temp[i+2].equals(ProjectID))
+                            {
+                                FeatureID = temp[i+2];
+                                
+                            }
+                        }
                        }
                 
-            projectUpdate.setSize(440,400);
-            projectUpdate.setLocationRelativeTo(null);
-            projectUpdateName.setText(name);
-            projectUpdateComment.setText(comment);
-            projectUpdateDescription.setText(description);
-            projectUpdateProjectID.setText(ProjectID);
-            projectUpdateProjectID.hide();
-            projectUpdate.setVisible(true);
+            featureUpdate.setSize(440,400);
+            featureUpdate.setLocationRelativeTo(null);
+            featureUpdateName.setText(name);
+            featureUpdateComment.setText(comment);
+            featureUpdateDescription.setText(description);
+            featureUpdateFeatureID.setText(FeatureID);
+            featureUpdateFeatureID.hide();
+            featureUpdate.setVisible(true);
             }
             });
 
@@ -1822,7 +1864,7 @@ public class AppWindow extends javax.swing.JFrame
 
             JLabel text1 = new JLabel((String)comments.get(i));
 
-            subbuffer.add(projectbutton);
+            subbuffer.add(featurebutton);
 
             subbuffer.add(text0);
 
@@ -1832,10 +1874,10 @@ public class AppWindow extends javax.swing.JFrame
 
         }
         
-        projectUpdateScrollpane.add(buffer);
-        projectUpdateScrollpane.setViewportView(buffer);
+        featureUpdateScrollpane.add(buffer);
+        featureUpdateScrollpane.setViewportView(buffer);
             // TODO add your handling code here:
-    }//GEN-LAST:event_issuesUpdateButtonActionPerformed
+    }//GEN-LAST:event_featuresUpdateButtonActionPerformed
 
     /**
      * @param args the command line arguments
