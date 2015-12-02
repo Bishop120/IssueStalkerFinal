@@ -1713,7 +1713,7 @@ public class AppWindow extends javax.swing.JFrame
     }//GEN-LAST:event_projectAddDialogButton1ActionPerformed
 
     private void projectCancelDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectCancelDialogButton1ActionPerformed
-        // TODO add your handling code here:
+    projectUpdate.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_projectCancelDialogButton1ActionPerformed
 
     private void featureAddDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureAddDialogButton1ActionPerformed
@@ -1739,7 +1739,7 @@ public class AppWindow extends javax.swing.JFrame
     }//GEN-LAST:event_featureAddDialogButton1ActionPerformed
 
     private void featureCancelDialogButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureCancelDialogButton1ActionPerformed
-        // TODO add your handling code here:
+    featureUpdate.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_featureCancelDialogButton1ActionPerformed
 
     private void featureUpdateNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureUpdateNameActionPerformed
