@@ -1439,7 +1439,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <EmptySpace pref="152" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="authLoginLabel" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="authUsernameLabel" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -1453,14 +1453,14 @@
                       </Group>
                       <Component id="authLoginStatusLabel" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <EmptySpace pref="152" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
                   <Component id="authLoginLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="authUsernameLabel" min="-2" max="-2" attributes="0"/>
@@ -1477,7 +1477,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="authLoginStatusLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="172" max="32767" attributes="0"/>
+                  <EmptySpace pref="173" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1557,7 +1557,6 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="projectReportButton" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="projectAdminButton" linkSize="3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                       <Component id="projectLogoutButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="projectAddButton" linkSize="3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
@@ -1581,11 +1580,10 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="projectScrollPane" min="-2" pref="357" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="projectReportButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="projectAdminButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="projectAddButton" min="-2" max="-2" attributes="0"/>
@@ -1593,14 +1591,9 @@
                           <Component id="projectUpdateButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="projectDeleteButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="projectScrollPane" min="-2" pref="357" max="-2" attributes="0"/>
-                          <EmptySpace pref="2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="projectLogoutButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="projectRefreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1630,14 +1623,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectRefreshButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="projectReportButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Report Generator"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projectReportButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="projectAddButton">
@@ -1757,7 +1742,6 @@
                       <Component id="featuresUpdateButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
                       <Component id="featuresAddButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
                       <Component id="featuresAdminButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
-                      <Component id="featuresReportButton" linkSize="4" alignment="2" min="-2" pref="156" max="-2" attributes="0"/>
                       <Component id="issuesFeaturesButton" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1782,11 +1766,10 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="featuresReportButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Component id="featuresScrollPane" min="-2" pref="357" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Component id="featuresAdminButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="featuresAddButton" min="-2" max="-2" attributes="0"/>
@@ -1798,14 +1781,9 @@
                           <Component id="featuresProjectButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="issuesFeaturesButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="featuresScrollPane" min="-2" pref="357" max="-2" attributes="0"/>
-                          <EmptySpace pref="2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="featuresLogoutButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="featuresRefreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1835,14 +1813,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featuresRefreshButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="featuresReportButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Report Generator"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="featuresReportButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="featuresAddButton">
@@ -1938,7 +1908,6 @@
                       <Component id="issuesUpdateButton" alignment="2" max="32767" attributes="0"/>
                       <Component id="issuesAddButton" alignment="2" max="32767" attributes="0"/>
                       <Component id="issuesAdminButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="issuesReportButton" alignment="2" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -1962,11 +1931,10 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="issuesReportButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Component id="issuesScrollPane" min="-2" pref="357" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Component id="issuesAdminButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="issuesAddButton" min="-2" max="-2" attributes="0"/>
@@ -1976,14 +1944,9 @@
                           <Component id="issuesDeleteButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="issuesProjectButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="issuesScrollPane" min="-2" pref="357" max="-2" attributes="0"/>
-                          <EmptySpace pref="2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="issuesLogoutButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="issueRefreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2016,14 +1979,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="issueRefreshButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="issuesReportButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Report Generator"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="issuesReportButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="issuesAddButton">
