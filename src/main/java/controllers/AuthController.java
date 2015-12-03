@@ -73,12 +73,11 @@ public class AuthController
         try 
         {
             response = authModel.logout();
-            System.out.println(response);
         } 
         catch (Exception ex) 
         {   
             Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
-            response = "Unknown Error";
+            response = "Error";
         }
         
          if(response.contains("{}"))

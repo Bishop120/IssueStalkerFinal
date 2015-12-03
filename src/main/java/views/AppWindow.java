@@ -38,7 +38,7 @@ public class AppWindow extends javax.swing.JFrame
         AdminPanel.setVisible(false);
         ProjectsPanel.setVisible(false);
         FeaturesPanel.setVisible(false);
-        DialogWarning.setVisible(false);
+        IssuesPanel.setVisible(false);
         ReportsPanel.setVisible(false);
     }
     
@@ -115,13 +115,20 @@ public class AppWindow extends javax.swing.JFrame
         issuesNameText = new javax.swing.JTextField();
         issuesNameLabel = new javax.swing.JLabel();
         issuesDescriptionLabel = new javax.swing.JLabel();
-        issuesCommentsLabel = new javax.swing.JLabel();
+        issuesAddDialogButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         issuesDescriptionText = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        issuesCommentsText = new javax.swing.JTextArea();
-        issuesAddDialogButton = new javax.swing.JButton();
         issuesCancelDialogButton = new javax.swing.JButton();
+        PriorityBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        DueDateText = new org.jdesktop.swingx.JXDatePicker();
+        DifficultyBox = new javax.swing.JComboBox<>();
+        PointsText = new javax.swing.JLabel();
+        ModifierText = new javax.swing.JSpinner();
         issuesDeleteDialog = new javax.swing.JDialog();
         issuesDeleteDialogButton = new javax.swing.JButton();
         issuesDeleteCancelDialogButton = new javax.swing.JButton();
@@ -130,6 +137,7 @@ public class AppWindow extends javax.swing.JFrame
         errorNotification = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         AuthPanel = new javax.swing.JPanel();
         authPasswordLabell = new javax.swing.JLabel();
         authPasswordField = new javax.swing.JPasswordField();
@@ -161,7 +169,7 @@ public class AppWindow extends javax.swing.JFrame
         featuresScrollPane = new javax.swing.JScrollPane();
         featuresProjectButton = new javax.swing.JButton();
         issuesFeaturesButton = new javax.swing.JButton();
-        DialogWarning = new javax.swing.JPanel();
+        IssuesPanel = new javax.swing.JPanel();
         issuesAdminButton = new javax.swing.JButton();
         issuesLogoutButton = new javax.swing.JButton();
         issueRefreshButton = new javax.swing.JButton();
@@ -171,6 +179,8 @@ public class AppWindow extends javax.swing.JFrame
         issuesDeleteButton = new javax.swing.JButton();
         issuesScrollPane = new javax.swing.JScrollPane();
         issuesProjectButton = new javax.swing.JButton();
+
+        projectAddDialog.setPreferredSize(new java.awt.Dimension(440, 400));
 
         projectNameText.setText("Project Name");
 
@@ -620,7 +630,10 @@ public class AppWindow extends javax.swing.JFrame
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        issuesNameText.setText("Feature Name");
+        issuesAddDialog.setPreferredSize(new java.awt.Dimension(440, 400));
+        issuesAddDialog.setSize(new java.awt.Dimension(0, 0));
+
+        issuesNameText.setText("Issue Name");
         issuesNameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 issuesNameTextActionPerformed(evt);
@@ -633,23 +646,17 @@ public class AppWindow extends javax.swing.JFrame
         issuesDescriptionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         issuesDescriptionLabel.setText("Issue Description");
 
-        issuesCommentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        issuesCommentsLabel.setText("Feature Comments");
-
-        issuesDescriptionText.setColumns(20);
-        issuesDescriptionText.setRows(5);
-        jScrollPane5.setViewportView(issuesDescriptionText);
-
-        issuesCommentsText.setColumns(20);
-        issuesCommentsText.setRows(5);
-        jScrollPane6.setViewportView(issuesCommentsText);
-
         issuesAddDialogButton.setText("Add");
         issuesAddDialogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 issuesAddDialogButtonActionPerformed(evt);
             }
         });
+
+        issuesDescriptionText.setColumns(20);
+        issuesDescriptionText.setRows(5);
+        issuesDescriptionText.setPreferredSize(null);
+        jScrollPane5.setViewportView(issuesDescriptionText);
 
         issuesCancelDialogButton.setText("Cancel");
         issuesCancelDialogButton.addActionListener(new java.awt.event.ActionListener() {
@@ -658,47 +665,120 @@ public class AppWindow extends javax.swing.JFrame
             }
         });
 
+        PriorityBox.setMaximumRowCount(5);
+        PriorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        PriorityBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PriorityBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Priority");
+
+        jLabel3.setText("Modifier");
+
+        jLabel4.setText("Difficulty");
+
+        jLabel5.setText("Due Date");
+
+        jLabel6.setText("Points");
+
+        DifficultyBox.setMaximumRowCount(5);
+        DifficultyBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        DifficultyBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DifficultyBoxActionPerformed(evt);
+            }
+        });
+
+        PointsText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PointsText.setText("1");
+
+        ModifierText.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ModifierTextStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout issuesAddDialogLayout = new javax.swing.GroupLayout(issuesAddDialog.getContentPane());
         issuesAddDialog.getContentPane().setLayout(issuesAddDialogLayout);
         issuesAddDialogLayout.setHorizontalGroup(
             issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(issuesAddDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(issuesNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(issuesNameLabel)
-                    .addComponent(issuesDescriptionLabel)
-                    .addComponent(issuesCommentsLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(issuesAddDialogLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(issuesAddDialogButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                .addComponent(issuesCancelDialogButton)
-                .addGap(57, 57, 57))
+                .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DifficultyBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(issuesAddDialogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(issuesNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(issuesNameLabel)
+                            .addComponent(issuesDescriptionLabel)))
+                    .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(ModifierText, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(PriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(DueDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel5))))
+                    .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                        .addGap(322, 322, 322)
+                        .addComponent(issuesCancelDialogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel3))
+                    .addGroup(issuesAddDialogLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel6)
+                            .addComponent(PointsText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         issuesAddDialogLayout.setVerticalGroup(
             issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(issuesAddDialogLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(35, 35, 35)
                 .addComponent(issuesNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(issuesNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(issuesDescriptionLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(issuesCommentsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(issuesDescriptionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(issuesAddDialogButton)
-                    .addComponent(issuesCancelDialogButton))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(5, 5, 5)
+                .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DifficultyBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ModifierText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(PriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DueDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addGap(6, 6, 6)
+                .addComponent(PointsText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addGroup(issuesAddDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(issuesCancelDialogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(issuesAddDialogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
         );
 
         issuesDeleteDialog.setSize(new java.awt.Dimension(440, 400));
@@ -1125,8 +1205,8 @@ public class AppWindow extends javax.swing.JFrame
 
         getContentPane().add(FeaturesPanel, "card3");
 
-        DialogWarning.setMinimumSize(new java.awt.Dimension(500, 400));
-        DialogWarning.setPreferredSize(new java.awt.Dimension(500, 400));
+        IssuesPanel.setMinimumSize(new java.awt.Dimension(500, 400));
+        IssuesPanel.setPreferredSize(new java.awt.Dimension(500, 400));
 
         issuesAdminButton.setText("Admininstration");
         issuesAdminButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1156,7 +1236,7 @@ public class AppWindow extends javax.swing.JFrame
             }
         });
 
-        issuesAddButton.setText("Add Feature");
+        issuesAddButton.setText("Add Issue");
         issuesAddButton.setMaximumSize(new java.awt.Dimension(146, 29));
         issuesAddButton.setMinimumSize(new java.awt.Dimension(146, 29));
         issuesAddButton.setPreferredSize(new java.awt.Dimension(146, 29));
@@ -1191,37 +1271,37 @@ public class AppWindow extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout DialogWarningLayout = new javax.swing.GroupLayout(DialogWarning);
-        DialogWarning.setLayout(DialogWarningLayout);
-        DialogWarningLayout.setHorizontalGroup(
-            DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogWarningLayout.createSequentialGroup()
+        javax.swing.GroupLayout IssuesPanelLayout = new javax.swing.GroupLayout(IssuesPanel);
+        IssuesPanel.setLayout(IssuesPanelLayout);
+        IssuesPanelLayout.setHorizontalGroup(
+            IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IssuesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(issuesProjectButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesUpdateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesAddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(issuesAdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(issuesReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
-                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DialogWarningLayout.createSequentialGroup()
+                    .addComponent(issuesReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(IssuesPanelLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addComponent(issueRefreshButton))
-                    .addGroup(DialogWarningLayout.createSequentialGroup()
+                    .addGroup(IssuesPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(issuesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(DialogWarningLayout.createSequentialGroup()
+            .addGroup(IssuesPanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(issuesLogoutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        DialogWarningLayout.setVerticalGroup(
-            DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DialogWarningLayout.createSequentialGroup()
-                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DialogWarningLayout.createSequentialGroup()
+        IssuesPanelLayout.setVerticalGroup(
+            IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IssuesPanelLayout.createSequentialGroup()
+                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(IssuesPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(issuesReportButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1235,17 +1315,17 @@ public class AppWindow extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(issuesProjectButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogWarningLayout.createSequentialGroup()
-                        .addContainerGap(9, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IssuesPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(issuesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
-                .addGroup(DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(IssuesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(issuesLogoutButton)
                     .addComponent(issueRefreshButton))
                 .addContainerGap())
         );
 
-        getContentPane().add(DialogWarning, "card3");
+        getContentPane().add(IssuesPanel, "card3");
 
         pack();
         setLocationRelativeTo(null);
@@ -1340,13 +1420,17 @@ public class AppWindow extends javax.swing.JFrame
     private void projectDeleteDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectDeleteDialogButtonActionPerformed
         // TODO add your handling code here:
         int indexes[];
+        int indexes1[];
         Vector names = new Vector(0,0);
         Vector projectIDs = new Vector(0,0);
+        Vector featureIDs = new Vector(0,0);
+        String projectid;
         String featureID;
+        String IssueID;
         String response;
         String temp1[];
         String temp2[];
-        
+        String temp3[];
         indexes = projectDeleteJList.getSelectedIndices();
         
         response = Controller.projects.getAllProject();
@@ -1366,21 +1450,49 @@ public class AppWindow extends javax.swing.JFrame
             response = Controller.features.getProjectFeatures((String) projectIDs.get(indexes[i]));
             
             temp2 = response.split("\"");
-           if (response.length() != 15){
-            for (int j = 0 ; j < response.length() ; j++)
+            
+            System.out.println(projectIDs.capacity());
+           
+            for (int j = 0 ; j < temp2.length ; j++)
             {
                 if(temp2[j].matches("name"))
                 {
+                    featureIDs.addElement(new String(temp2[j+6]));
                     featureID = temp2[j+6];
                     response = Controller.features.deleteFeature(featureID);
-                    System.out.println(response);
                     
                 }
                 
                 
             }
            }
-        }
+           System.out.println(featureIDs.capacity());
+            for(int j = 0; j < featureIDs.capacity(); j++)
+                {
+            response = Controller.issues.getFeatureIssues((String) featureIDs.get(j));
+            
+            temp2 = response.split("\"");
+            
+            System.out.println("Hello");
+
+           if (response.length() != 15){
+               for (int k = 0 ; k < response.length() ; k++)
+            {
+                if(temp2[k].matches("name"))
+                {
+                    IssueID = temp2[k+6];
+                    response = Controller.issues.deleteFeature(IssueID);
+                    System.out.println(response);
+                    
+                }
+                
+                
+            }
+               
+           }
+           
+           }
+        
         for(int i = 0; i < indexes.length; i++)
         {
             response = Controller.projects.deleteProject((String) projectIDs.get(indexes[i]));
@@ -1546,9 +1658,8 @@ public class AppWindow extends javax.swing.JFrame
 
     private void issuesAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesAddButtonActionPerformed
         // TODO add your handling code here:
-        issuesAddDialog.setSize(440,400);
+        issuesAddDialog.setSize(475,450);
         issuesAddDialog.setLocationRelativeTo(null);
-        issuesCommentsText.setText("");
         issuesDescriptionText.setText("");
         issuesNameText.setText("Issue Name");
         issuesAddDialog.setVisible(true);
@@ -1566,37 +1677,8 @@ public class AppWindow extends javax.swing.JFrame
         // TODO add your handling code here:
         ProjectRefresh();
         ProjectsPanel.setVisible(true);
-        DialogWarning.setVisible(false);
+        IssuesPanel.setVisible(false);
     }//GEN-LAST:event_issuesProjectButtonActionPerformed
-
-    private void issuesAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesAddDialogButtonActionPerformed
-      String response;
-        String Name = issuesNameText.getText();
-        String Description = issuesDescriptionText.getText();
-        String Comments = issuesCommentsText.getText();
-        if (Name.isEmpty()||Description.isEmpty()||Comments.isEmpty())
-        {
-            errorNotification.setSize(440,400);
-            errorNotification.setLocationRelativeTo(null);
-            errorNotification.setVisible(true);
-            return;
-        }
-        else
-        response = Controller.issues.addIssue(issuesNameText.getText(), issuesDescriptionText.getText(),issuesCommentsText.getText(), FeatureID);
-        System.out.println(response);
-        IssueRefresh();
-        issuesAddDialog.setVisible(false);
-        issuesCommentsText.setText("");
-        issuesDescriptionText.setText("");
-        issuesNameText.setText("Issue Name");   // TODO add your handling code here:
-
-    }//GEN-LAST:event_issuesAddDialogButtonActionPerformed
-
-    private void issuesCancelDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesCancelDialogButtonActionPerformed
-        // TODO add your handling code here:
-        IssueRefresh();
-        issuesAddDialog.setVisible(false);
-    }//GEN-LAST:event_issuesCancelDialogButtonActionPerformed
 
     private void issuesDeleteDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesDeleteDialogButtonActionPerformed
         // TODO add your handling code here:
@@ -1614,7 +1696,7 @@ public class AppWindow extends javax.swing.JFrame
         // TODO add your handling code here:
         FeatureRefresh();
         FeaturesPanel.setVisible(true);
-        DialogWarning.setVisible(false);
+        IssuesPanel.setVisible(false);
     }//GEN-LAST:event_issuesFeaturesButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1935,6 +2017,63 @@ public class AppWindow extends javax.swing.JFrame
             // TODO add your handling code here:
     }//GEN-LAST:event_featuresUpdateButtonActionPerformed
 
+    private void ModifierTextStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ModifierTextStateChanged
+        int priority = PriorityBox.getSelectedIndex()+1;
+        int difficulty = DifficultyBox.getSelectedIndex()+1;
+        int modifier = (Integer) ModifierText.getValue();
+        int x = (priority * difficulty) + modifier;
+        System.out.println(PriorityBox.getSelectedIndex()+1);
+        System.out.println(DifficultyBox.getSelectedIndex()+1);
+        PointsText.setText(String.valueOf(x));
+    }//GEN-LAST:event_ModifierTextStateChanged
+
+    private void DifficultyBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DifficultyBoxActionPerformed
+        int priority = PriorityBox.getSelectedIndex()+1;
+        int difficulty = DifficultyBox.getSelectedIndex()+1;
+        int modifier = (Integer) ModifierText.getValue();
+        int x = (priority * difficulty) + modifier;
+        System.out.println(PriorityBox.getSelectedIndex()+1);
+        System.out.println(DifficultyBox.getSelectedIndex()+1);
+        PointsText.setText(String.valueOf(x));          // TODO add your handling code here:
+    }//GEN-LAST:event_DifficultyBoxActionPerformed
+
+    private void PriorityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriorityBoxActionPerformed
+        int priority = PriorityBox.getSelectedIndex()+1;
+        int difficulty = DifficultyBox.getSelectedIndex()+1;
+        int modifier = (Integer) ModifierText.getValue();
+        int x = (priority * difficulty) + modifier;
+        System.out.println(PriorityBox.getSelectedIndex()+1);
+        System.out.println(DifficultyBox.getSelectedIndex()+1);
+        PointsText.setText(String.valueOf(x));
+    }//GEN-LAST:event_PriorityBoxActionPerformed
+
+    private void issuesCancelDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesCancelDialogButtonActionPerformed
+        // TODO add your handling code here:
+        IssueRefresh();
+        issuesAddDialog.setVisible(false);
+    }//GEN-LAST:event_issuesCancelDialogButtonActionPerformed
+
+    private void issuesAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesAddDialogButtonActionPerformed
+        String response;
+        String Name = issuesNameText.getText();
+        String Description = issuesDescriptionText.getText();
+        String Points = PointsText.getText();
+
+        if (Name.isEmpty()||Description.isEmpty())
+        {
+            errorNotification.setSize(440,400);
+            errorNotification.setLocationRelativeTo(null);
+            errorNotification.setVisible(true);
+            return;
+        }
+        else
+        response = Controller.issues.addIssue();
+        System.out.println(response);
+        IssueRefresh();
+        issuesAddDialog.setVisible(false);
+        issuesNameText.setText("Issue Name");   // TODO add your handling code here:
+    }//GEN-LAST:event_issuesAddDialogButtonActionPerformed
+
     private void issuesNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesNameTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_issuesNameTextActionPerformed
@@ -2158,7 +2297,7 @@ public class AppWindow extends javax.swing.JFrame
                     String response;
                     FeatureID = (String)featureIDs.get(x);
                     IssueRefresh();
-                    DialogWarning.setVisible(true);
+                    IssuesPanel.setVisible(true);
                     FeaturesPanel.setVisible(false);
                 }
             });
@@ -2327,13 +2466,18 @@ public class AppWindow extends javax.swing.JFrame
         projectDeleteJList = new JList(names);
         projectDeleteScrollpane.setViewportView(projectDeleteJList);
     }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminPanel;
     private javax.swing.JPanel AuthPanel;
-    private javax.swing.JPanel DialogWarning;
+    private javax.swing.JComboBox<String> DifficultyBox;
+    private org.jdesktop.swingx.JXDatePicker DueDateText;
     private javax.swing.JPanel FeaturesPanel;
+    private javax.swing.JPanel IssuesPanel;
+    private javax.swing.JSpinner ModifierText;
+    private javax.swing.JLabel PointsText;
+    private javax.swing.JComboBox<String> PriorityBox;
     private javax.swing.JPanel ProjectsPanel;
     private javax.swing.JPanel ReportsPanel;
     private javax.swing.JButton authCancelButton;
@@ -2388,8 +2532,6 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JButton issuesAddDialogButton;
     private javax.swing.JButton issuesAdminButton;
     private javax.swing.JButton issuesCancelDialogButton;
-    private javax.swing.JLabel issuesCommentsLabel;
-    private javax.swing.JTextArea issuesCommentsText;
     private javax.swing.JButton issuesDeleteButton;
     private javax.swing.JButton issuesDeleteCancelDialogButton;
     private javax.swing.JDialog issuesDeleteDialog;
@@ -2408,12 +2550,17 @@ public class AppWindow extends javax.swing.JFrame
     private javax.swing.JButton issuesUpdateButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JButton projectAddButton;
     private javax.swing.JDialog projectAddDialog;
     private javax.swing.JButton projectAddDialogButton;

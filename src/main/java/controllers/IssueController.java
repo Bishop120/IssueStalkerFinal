@@ -28,11 +28,11 @@ public class IssueController
         return response;
     }
     
-    public String addIssue(String name, String description, String comment, String FeatureID)
+    public String addIssue()
     {
         String response;
         
-        response = issueModel.postIssue(name,description,comment,FeatureID);
+        response = issueModel.postIssue();
         
         return response;
     }

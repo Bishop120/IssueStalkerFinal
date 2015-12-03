@@ -88,21 +88,63 @@ public class IssueService extends Service
      * @return String 
      * @throws java.lang.Exception 
      */
-    public String postIssue(String name, String description, String comment, String FeatureID)
+    public String postIssue( )
     {
         String response="";
         
         String issue = "";
-        issue = issue + "{\"name\":\"";
-        issue = issue + name;
+        /*
+        issue = issue + "\",\"createdAt\":\"";
+        
         issue = issue + "\",\"description\":\"";
         issue = issue + description;
-        issue = issue + "\",\"comment\":\"";
-        issue = issue + comment;
+        issue = issue + "\",\"difficulty\":\"";
+        issue = issue + difficulty;
+        issue = issue + "\",\"dueDate\":\"";
+        issue = issue + dueDate;
         issue = issue + "\",\"milestone\":{\"__type\": \"Pointer\",\"className\": \"Milestone\",\"objectId\": \"";
         issue = issue + FeatureID;
-        issue = issue + "\"}}";
+        issue = issue + "\"},";
+        issue = issue + "\"modifier\":\"";
+        issue = issue + modifier;
+        issue = issue + "\",\"name\":\"";
+        issue = issue + name;
+        issue = issue + "\",\"objectId\":\"";
+        issue = issue + IssueID;
+        issue = issue + "\",\"points\":\"";
+        issue = issue + points;
+        issue = issue + "\",\"priority\":\"";
+        issue = issue + priority;
+        issue = issue + "\",\"updatedAt\":\"";
+        issue = issue + updatedAt;
+        issue = issue + "\"}";
         
+        
+        */
+            
+        
+        {
+   /* "results": [
+        {
+            "comment": "ugly comment",
+            "createdAt": "2015-11-19T18:18:21.890Z",
+            "description": "ugly description",
+            "difficulty": "1",
+            "dueDate": "12Dec2015",
+            "milestone": {
+                "__type": "Pointer",
+                "className": "Milestone",
+                "objectId": "UyNxlPvwRV"
+            },
+            "modifier": "15",
+            "name": "Test Issue",
+            "objectId": "5Rb1dtMBVW",
+            "points": "20",
+            "priority": "1",
+            "updatedAt": "2015-12-03T04:20:48.757Z"
+        }
+]
+}*/}
         System.out.println(issue);
         
         try 
@@ -116,47 +158,7 @@ public class IssueService extends Service
         
         return response;
     }
-    
-        /**
-     * Post an Issue to the API
-     * @param  FeatureID
-     * @param  name
-     * @param  description
-     * @param  priority
-     * @param  difficulty
-     * @param  comment
-     * @return String  
-     * @throws java.lang.Exception 
-     */
-        public String postIssue(String FeatureId, String name, String description, Integer priority, Integer difficulty, String comment){
-            String response="";
-
-            String feature = "";
-            feature = feature + "{\"name\":\"";
-            feature = feature + name;
-            feature = feature + "\",\"description\":\"";
-            feature = feature + description;
-            feature = feature + "\",\"comment\":\"";
-            feature = feature + comment;
-            feature = feature + "\",\"project\":{\"__type\": \"Pointer\",\"className\": \"Milestone\",\"objectId\": \"";
-            feature = feature + FeatureId;
-            feature = feature + "\"}}";
-
-            System.out.println(feature);
-
-            try 
-            {
-                response = super.post("Issue",feature);
-            } 
-            catch (Exception ex) 
-            {
-                Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            return response;
-        }
-        
-        /**
+        /*
         * Delete a Feature from the API
         * @param issueID
         * @return String 
