@@ -83,21 +83,25 @@ public class IssueService extends Service
      * Create and post a Issue
      * @param  name
      * @param  description
-     * @param  comment
+     * @param  points
+     * @param  modifier
+     * @param  difficulty
+     * @param  priority
+     * @param  dueDate
      * @param  FeatureID
      * @return String 
      * @throws java.lang.Exception 
      */
-    public String postIssue( )
+    public String postIssue(String FeatureID,String name,String description,String points,String modifier,String difficulty,String priority,String dueDate)
     {
         String response="";
         
         String issue = "";
-        /*
-        issue = issue + "\",\"createdAt\":\"";
         
-        issue = issue + "\",\"description\":\"";
+        issue = issue + "{\"description\":\"";
         issue = issue + description;
+        issue = issue + "\",\"name\":\"";
+        issue = issue + name;
         issue = issue + "\",\"difficulty\":\"";
         issue = issue + difficulty;
         issue = issue + "\",\"dueDate\":\"";
@@ -107,27 +111,16 @@ public class IssueService extends Service
         issue = issue + "\"},";
         issue = issue + "\"modifier\":\"";
         issue = issue + modifier;
-        issue = issue + "\",\"name\":\"";
-        issue = issue + name;
-        issue = issue + "\",\"objectId\":\"";
-        issue = issue + IssueID;
         issue = issue + "\",\"points\":\"";
         issue = issue + points;
         issue = issue + "\",\"priority\":\"";
         issue = issue + priority;
-        issue = issue + "\",\"updatedAt\":\"";
-        issue = issue + updatedAt;
         issue = issue + "\"}";
         
         
-        */
-            
         
+   /* "
         {
-   /* "results": [
-        {
-            "comment": "ugly comment",
-            "createdAt": "2015-11-19T18:18:21.890Z",
             "description": "ugly description",
             "difficulty": "1",
             "dueDate": "12Dec2015",
@@ -138,13 +131,11 @@ public class IssueService extends Service
             },
             "modifier": "15",
             "name": "Test Issue",
-            "objectId": "5Rb1dtMBVW",
             "points": "20",
-            "priority": "1",
-            "updatedAt": "2015-12-03T04:20:48.757Z"
+            "priority": "1"
         }
 ]
-}*/}
+}*/
         System.out.println(issue);
         
         try 
@@ -187,7 +178,7 @@ public class IssueService extends Service
         * @param  update
         * @return String  
         */
-        public String updateIssue(String issueId, String update)
+        public String updateIssues(String issueId, String update)
         {
             String response;
 

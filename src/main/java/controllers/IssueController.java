@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package controllers;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import services.*;
 
 /**
@@ -28,11 +30,11 @@ public class IssueController
         return response;
     }
     
-    public String addIssue()
+    public String addIssue(String FeatureID,String name,String description,String points,String modifier,String difficulty,String priority,String dueDate)
     {
         String response;
         
-        response = issueModel.postIssue();
+        response = issueModel.postIssue(FeatureID,name,description,points,modifier,difficulty,priority,dueDate);
         
         return response;
     }
@@ -46,6 +48,46 @@ public class IssueController
         return response;
     }
     
-    
-    
+    public String getIssue(String IssueId)
+    {
+        String response;
+        
+        response = issueModel.getIssue(IssueId);
+        
+        return response;
+    }
+    public String updateIssue(String FeatureID,String name,String description,String points,String modifier,String difficulty,String priority,String dueDate, String IssueID){
+        String response="";
+        
+        String issue = "";
+        
+        issue = issue + "{\"description\":\"";
+        issue = issue + description;
+        issue = issue + "\",\"name\":\"";
+        issue = issue + name;
+        issue = issue + "\",\"difficulty\":\"";
+        issue = issue + difficulty;
+        issue = issue + "\",\"dueDate\":\"";
+        issue = issue + dueDate;
+        issue = issue + "\",\"milestone\":{\"__type\": \"Pointer\",\"className\": \"Milestone\",\"objectId\": \"";
+        issue = issue + FeatureID;
+        issue = issue + "\"},";
+        issue = issue + "\"modifier\":\"";
+        issue = issue + modifier;
+        issue = issue + "\",\"points\":\"";
+        issue = issue + points;
+        issue = issue + "\",\"priority\":\"";
+        issue = issue + priority;
+        issue = issue + "\"}";
+        
+        
+ 
+        System.out.println(issue);
+        
+        
+       response = issueModel.updateIssues(IssueID,issue);
+        
+        
+        return response;
+    }
 }
