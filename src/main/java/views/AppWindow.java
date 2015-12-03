@@ -621,12 +621,17 @@ public class AppWindow extends javax.swing.JFrame
         );
 
         issuesNameText.setText("Feature Name");
+        issuesNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issuesNameTextActionPerformed(evt);
+            }
+        });
 
         issuesNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        issuesNameLabel.setText("Feature Name");
+        issuesNameLabel.setText("Issue Name");
 
         issuesDescriptionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        issuesDescriptionLabel.setText("Feature Description");
+        issuesDescriptionLabel.setText("Issue Description");
 
         issuesCommentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         issuesCommentsLabel.setText("Feature Comments");
@@ -1355,31 +1360,33 @@ public class AppWindow extends javax.swing.JFrame
                 projectIDs.addElement(new String(temp1[i+6]));
             }
         }
-        /*
-        for(int i = 0; i < projectIDs.size(); i++)
+        for(int i = 0; i < indexes.length; i++)
         {
+            
             response = Controller.features.getProjectFeatures((String) projectIDs.get(indexes[i]));
             
             temp2 = response.split("\"");
-        
-            for (int j = 0 ; j < temp2.length ; j++)
+           if (response.length() != 15){
+            for (int j = 0 ; j < response.length() ; j++)
             {
                 if(temp2[j].matches("name"))
                 {
                     featureID = temp2[j+6];
                     response = Controller.features.deleteFeature(featureID);
                     System.out.println(response);
+                    
                 }
+                
+                
             }
-            
+           }
         }
-        */
-        for(int i = 0; i < projectIDs.size(); i++)
+        for(int i = 0; i < indexes.length; i++)
         {
             response = Controller.projects.deleteProject((String) projectIDs.get(indexes[i]));
             System.out.println(response);
         }
-        
+        ProjectRefresh();
         ProjectDeleteRefresh();
     }//GEN-LAST:event_projectDeleteDialogButtonActionPerformed
 
@@ -1460,7 +1467,9 @@ public class AppWindow extends javax.swing.JFrame
         Vector names = new Vector(0,0);
         Vector featuresIDs = new Vector(0,0);
         String response;
+        String issueID;
         String temp[];
+        String temp2[];
         
         indexes = featuresDeleteJList.getSelectedIndices();
         
@@ -1475,13 +1484,36 @@ public class AppWindow extends javax.swing.JFrame
                 featuresIDs.addElement(new String(temp[i+6]));
             }
         }
+        for(int i = 0; i < indexes.length; i++)
+        {
+            
+            response = Controller.issues.getFeatureIssues((String) featuresIDs.get(indexes[i]));
+            
+            temp2 = response.split("\"");
+           if (response.length() != 15){
+            for (int j = 0 ; j < response.length() ; j++)
+            {
+                if(temp2[j].matches("name"))
+                {
+                    issueID = temp2[j+6];
+                    response = Controller.issues.deleteFeature(issueID);
+                    System.out.println(response);
+                    
+                }
+                
+                
+            }
+           }
+        }
+        
+        
         
         for(int i = 0; i < indexes.length; i++)
         {
             response = Controller.features.deleteFeature((String) featuresIDs.get(indexes[i]));
             System.out.println(response);
         }
-        
+        FeatureRefresh();
         FeatureDeleteRefresh();
     }//GEN-LAST:event_featuresDeleteDialogButtonActionPerformed
 
@@ -1538,7 +1570,25 @@ public class AppWindow extends javax.swing.JFrame
     }//GEN-LAST:event_issuesProjectButtonActionPerformed
 
     private void issuesAddDialogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesAddDialogButtonActionPerformed
-        // TODO add your handling code here:
+      String response;
+        String Name = issuesNameText.getText();
+        String Description = issuesDescriptionText.getText();
+        String Comments = issuesCommentsText.getText();
+        if (Name.isEmpty()||Description.isEmpty()||Comments.isEmpty())
+        {
+            errorNotification.setSize(440,400);
+            errorNotification.setLocationRelativeTo(null);
+            errorNotification.setVisible(true);
+            return;
+        }
+        else
+        response = Controller.issues.addIssue(issuesNameText.getText(), issuesDescriptionText.getText(),issuesCommentsText.getText(), FeatureID);
+        System.out.println(response);
+        IssueRefresh();
+        issuesAddDialog.setVisible(false);
+        issuesCommentsText.setText("");
+        issuesDescriptionText.setText("");
+        issuesNameText.setText("Issue Name");   // TODO add your handling code here:
 
     }//GEN-LAST:event_issuesAddDialogButtonActionPerformed
 
@@ -1885,6 +1935,10 @@ public class AppWindow extends javax.swing.JFrame
             // TODO add your handling code here:
     }//GEN-LAST:event_featuresUpdateButtonActionPerformed
 
+    private void issuesNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issuesNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_issuesNameTextActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1950,6 +2004,8 @@ public class AppWindow extends javax.swing.JFrame
             ProjectsPanel.setVisible(true);
 
             authLoginStatusLabel.setText("");
+            
+            System.out.println(Controller.getToken());
         } 
         
         else 
@@ -1975,6 +2031,8 @@ public class AppWindow extends javax.swing.JFrame
     private void ProjectRefresh() 
     {
         String response = Controller.projects.getAllProject();
+        
+        System.out.println(response);
         
         Vector names = new Vector(0,0);
         final Vector projectIDs = new Vector(0,0);

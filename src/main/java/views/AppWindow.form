@@ -787,17 +787,20 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Feature Name"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="issuesNameTextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="issuesNameLabel">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Feature Name"/>
+            <Property name="text" type="java.lang.String" value="Issue Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="issuesDescriptionLabel">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Feature Description"/>
+            <Property name="text" type="java.lang.String" value="Issue Description"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="issuesCommentsLabel">

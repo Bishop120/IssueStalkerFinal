@@ -39,10 +39,17 @@ public class AuthController
             response = authModel.login(username, password);
             if(response.contains("sessionToken"))
             {
+                System.out.println(response);
                 temp=response.split("\"");
-                sessionToken=temp[11];
-                valid = true;
-                authModel.setToken(sessionToken);
+                for(int i=0; i<temp.length; i++)
+                {
+                    if(temp[i].equals("sessionToken"))
+                    {
+                        sessionToken = temp[i+2];
+                        authModel.setToken(sessionToken);
+                        valid = true;
+                    }
+                }
             }
         } 
         catch (Exception ex) 
@@ -60,12 +67,13 @@ public class AuthController
      */
     public Boolean logout()
     {
-        Boolean valid;
+        Boolean valid = false;
         String response;
         
         try 
         {
             response = authModel.logout();
+            System.out.println(response);
         } 
         catch (Exception ex) 
         {   
@@ -73,7 +81,10 @@ public class AuthController
             response = "Unknown Error";
         }
         
-        valid = response.equals("{}");
+         if(response.contains("{}"))
+         {
+             valid=true;
+         }
         
         return valid;
     }
